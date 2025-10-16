@@ -1,0 +1,27 @@
+name: 🤖 CI - Testes Robot Framework
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'robotframework/**'
+      - '.github/workflows/robotframework_ci.yml'
+
+jobs:
+  build_and_test_java:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: ☕ Configurar Java (v17)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven' # Mude para 'gradle' se usar Gradle
+
+      - name: 🏗️ Compilar e Rodar Testes com Maven
+        # Ajuste este comando (mvn test ou mvn clean install) conforme o seu build
+        run: mvn test
+        working-directory: robotframework

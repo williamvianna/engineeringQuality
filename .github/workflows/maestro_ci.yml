@@ -1,0 +1,23 @@
+name: 🎬 CI - Testes Mobile Maestro
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'maestro/**'
+      - '.github/workflows/maestro_ci.yml'
+
+jobs:
+  run_maestro_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18 # Maestro depende do Node
+
+      - name: 📦 Instalar e Rodar Maestro
+        run: |
+          npm install -g maestro
+          maestro test maestro/flows/initial_test.yaml
+        working-directory: maestro

@@ -1,0 +1,23 @@
+name: 📊 CI - Scripts k6 (Performance)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'k6/**'
+      - '.github/workflows/k6_ci.yml'
+
+jobs:
+  run_k6_smoke_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ⚙️ Configurar k6
+        uses: grafana/setup-k6@v1
+        with:
+          k6-version: 'latest'
+
+      - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
+        # Assumindo que o script principal é 'script.js' dentro da pasta k6
+        run: k6 run script.js --vus 1 --iterations 10
+        working-directory: k6
