@@ -44,6 +44,7 @@ Abaixo estão os links diretos para cada área de especialização, cada um com 
 | 🌳 **Git** | Estudos e comandos essenciais para **controle de versão e colaboração** usando Git e fluxos de trabalho comuns. | `[Ver Projeto](https://github.com/williamvianna/git)` |
 | 🔁 **Integração CI/CD** | Experimentos e configurações de **Integração/Entrega Contínua** usando GitHub Actions para pipelines de testes. | `[Ver Projeto](https://github.com/williamvianna/cicd)` |
 | ☕ **Java** | Projetos de automação de testes (e.g., com Selenium/JUnit) utilizando a **linguagem Java**. | `[Ver Projeto](https://github.com/williamvianna/java)` |
+| 📦 **JavaScript / Fundamentos** | Repositório dedicado ao aprendizado e aplicação de **fundamentos de JavaScript** em contextos de automação e testes unitários. | `[Ver Projeto](https://github.com/williamvianna/javascript)` |
 | 📈 **JMeter** | Criação e execução de testes de **performance e estresse** utilizando a ferramenta Apache JMeter. | `[Ver Projeto](https://github.com/williamvianna/jmeter)` |
 | 📊 **k6** | Scripts e cenários de testes de **carga e performance** utilizando a ferramenta k6. | `[Ver Projeto](https://github.com/williamvianna/k6)` |
 | 🎬 **Maestro** | Automação de testes para aplicativos móveis focada em **gestos de usuário e fluxo de telas** em ambientes nativos. | `[Ver Projeto](https://github.com/williamvianna/maestro)` |

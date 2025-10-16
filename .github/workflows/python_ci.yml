@@ -8,20 +8,23 @@ on:
       - '.github/workflows/python_ci.yml'
 
 jobs:
-  build_and_test_java:
+  run_pytest:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: ☕ Configurar Java (v17)
-        uses: actions/setup-java@v4
+      - name: 🐍 Configurar Python
+        uses: actions/setup-python@v5
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven' # Mude para 'gradle' se usar Gradle
+          python-version: '3.11'
 
-      - name: 🏗️ Compilar e Rodar Testes com Maven
-        # Ajuste este comando (mvn test ou mvn clean install) conforme o seu build
-        run: mvn test
+      - name: 📦 Instalar Dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        working-directory: python
+
+      - name: 🏃 Rodar Testes com Pytest
+        run: pytest
         working-directory: python

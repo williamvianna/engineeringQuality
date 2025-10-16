@@ -19,9 +19,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'maven' # Mude para 'gradle' se usar Gradle
+          cache: 'maven'
 
       - name: 🏗️ Compilar e Rodar Testes com Maven
-        # Ajuste este comando (mvn test ou mvn clean install) conforme o seu build
+        run: mvn clean install -DskipTests
+        working-directory: java
+
+      - name: 🏃 Rodar Testes (Separado)
         run: mvn test
         working-directory: java

@@ -1,4 +1,4 @@
-name: 🧪 CI - Testes E2E Cypress
+name: 📦 CI - JavaScript Fundamentals/Unit Tests
 
 on:
   push:
@@ -8,18 +8,23 @@ on:
       - '.github/workflows/javascript_ci.yml'
 
 jobs:
-  run_node_tests: # Mantenha o nome do job genérico se quiser
+  run_js_tests:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
+
       - name: ⚙️ Configurar Node.js (v20)
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: 📦 Instalar Dependências
+
+      - name: 📦 Instalar Dependências (se houver)
+        # Se você usar Jest/Mocha/Chai, esta etapa é necessária
         run: npm install
         working-directory: javascript
-      - name: 🏃 Rodar Testes
-        run: npx cypress run
+
+      - name: 🏃 Rodar Testes Unitários
+        # Supondo que você usa um framework como Jest e o script no package.json é 'test'
+        run: npm test
         working-directory: javascript
