@@ -24,7 +24,6 @@ jobs:
         with:
           ruby-version: '3.x'
           bundler-cache: true
-        working-directory: ruby
 
       - name: 🏃 Rodar Testes Ruby (RSpec/Cucumber)
         run: bundle exec rspec spec/
