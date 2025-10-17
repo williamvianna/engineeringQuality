@@ -15,16 +15,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🧪 Instala k6 Manualmente (Contorno de Action)
-        run: |
-          # Baixa a versão mais recente diretamente do repositório
-          curl -LO https://github.com/grafana/k6/releases/download/v0.49.0/k6_0.49.0_amd64.deb 
-          
-          # Instala o pacote .deb (sem depender de repositórios/chaves GPG)
-          sudo dpkg -i k6_0.49.0_amd64.deb
-          
-          # Remove o arquivo baixado
-          rm k6_0.49.0_amd64.deb
+        run: sudo snap install k6
 
       - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        run: k6 run script.js
+        run: /snap/bin/k6 run script.js
         working-directory: k6
