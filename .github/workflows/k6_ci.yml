@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'k6' ou no próprio workflow
       - 'k6/**'
       - '.github/workflows/k6_ci.yml'
 
@@ -15,14 +14,11 @@ jobs:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: ⚙️ Configurar k6 CLI
-        # Utiliza a action oficial do Grafana para instalar a CLI do k6
-        uses: grafana/k6-action@v1
+      - name: ⚙️ Configurar k6
+        uses: k6-io/action@v1
         with:
           k6-version: 'latest'
 
       - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        # Executa um teste rápido para validar a sintaxe e a conectividade do script
-        # Substitua 'script.js' pelo nome do seu arquivo principal, se necessário.
         run: k6 run script.js --vus 1 --iterations 10
         working-directory: k6
