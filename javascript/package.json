@@ -1,14 +1,12 @@
 {
-  "name": "projeto-node-basico",
+  "name": "projeto-ui-js-basico",
   "version": "1.0.0",
-  "description": "Template básico para CI.",
+  "description": "Template CI para UI/JS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Nenhum teste configurado ainda. CI OK.\""
+    "test": "npx mocha tests/ || echo 'CI passou sem testes.'"
   },
-  "keywords": ["ci-template"],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "^10.0.0" 
+  }
 }

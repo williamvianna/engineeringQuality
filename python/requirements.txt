@@ -1,0 +1,2 @@
+# 💡 ESSENCIAL: O comando 'pytest' deve ser instalado
+pytest
