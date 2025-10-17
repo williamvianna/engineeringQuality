@@ -1,23 +1,38 @@
-name: 🌐 CI - Testes Selenium Clássicos (Use setup de Java ou Python, o que for relevante)
+name: 🌐 CI - Testes Selenium Clássicos (Python/Pytest)
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'selenium' ou no próprio workflow
       - 'selenium/**'
       - '.github/workflows/selenium_ci.yml'
 
 jobs:
-  run_k6_smoke_test:
+  run_selenium_tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: ⚙️ Configurar k6
-        uses: grafana/setup-k6@v1
-        with:
-          k6-version: 'latest'
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        # Assumindo que o script principal é 'script.js' dentro da pasta k6
-        run: k6 run script.js --vus 1 --iterations 10
+      - name: 🐍 Configurar Python
+        # Selenium em Python é muito comum; configuramos o ambiente aqui.
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip' 
+        
+      - name: 📦 Instalar Dependências (Selenium/Pytest)
+        # Instala Selenium, webdriver-manager e o Pytest via requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        working-directory: selenium
+
+      # Nota: O 'webdriver-manager' deve cuidar do download e do PATH do ChromeDriver
+      # no ambiente CI, facilitando a execução.
+
+      - name: 🏃 Rodar Testes Selenium com Pytest
+        # Executa a suíte de testes na subpasta 'selenium'
+        run: pytest
         working-directory: selenium

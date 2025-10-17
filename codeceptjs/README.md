@@ -1,18 +1,19 @@
 # 🤖 Automação BDD com CodeceptJS
 
-Este projeto utiliza o CodeceptJS para escrever testes End-to-End com uma sintaxe BDD (Behavior-Driven Development) limpa e focada no usuário. A principal vantagem é a abstração do *driver* subjacente (Playwright, WebDriver, etc.).
+Este projeto utiliza o **CodeceptJS** para escrever testes End-to-End com uma sintaxe BDD (Behavior-Driven Development) limpa e focada no usuário. A principal vantagem é a abstração do *driver* subjacente (Playwright, WebDriver, etc.), permitindo flexibilidade e manutenção simplificada.
 
 ## ✨ Destaques
-- Cenários de teste escritos em um formato linear e legível.
-- Suporte nativo ao Page Object Model (POM).
-- Driver agnóstico: permite alternar facilmente entre Puppeteer, Playwright ou WebDriver.
+- Cenários de teste escritos em um formato linear e legível (*"I See", "I Click"*).
+- Suporte nativo ao **Page Object Model (POM)** para organização do código.
+- **Driver Agnóstico**: Permite alternar facilmente entre Puppeteer, Playwright ou WebDriver.
 
-## 🚀 Como rodar os testes
+## 🚀 Como Rodar os Testes
 
-1.  **Clone o repositório:**
+Assumindo que você já clonou o monorepo central (`engineeringQuality`):
+
+1.  **Navegue para a pasta do projeto:**
     ```bash
-    git clone [https://github.com/williamvianna/codeceptjs-bdd-automation.git](https://github.com/williamvianna/codeceptjs-bdd-automation.git)
-    cd codeceptjs-bdd-automation
+    cd codeceptjs
     ```
 2.  **Instale as dependências:**
     ```bash
@@ -22,7 +23,7 @@ Este projeto utiliza o CodeceptJS para escrever testes End-to-End com uma sintax
     ```bash
     npx codeceptjs run --steps
     ```
-4.  **Execute em modo UI (para debug):**
+4.  **Execute em modo UI (para debug visual):**
     ```bash
     npx codeceptjs run --ui
     ```
@@ -30,6 +31,7 @@ Este projeto utiliza o CodeceptJS para escrever testes End-to-End com uma sintax
 ## 📚 Tecnologias Envolvidas
 | Tecnologia | Descrição |
 | :--- | :--- |
-| **CodeceptJS** | Framework de testes BDD. |
+| **CodeceptJS** | Framework de testes BDD de alto nível. |
 | **JavaScript/TypeScript** | Linguagem para escrita dos testes. |
-| **Playwright/WebDriver** | *Driver* de automação configurado. |
+| **Playwright/WebDriver** | *Driver* de automação configurado para interagir com o navegador. |
+| **Node.js** | Ambiente de execução. |

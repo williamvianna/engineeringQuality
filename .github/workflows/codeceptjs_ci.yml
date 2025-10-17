@@ -4,23 +4,28 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'codeceptjs' ou no próprio workflow
       - 'codeceptjs/**'
       - '.github/workflows/codeceptjs_ci.yml'
 
 jobs:
-  run_node_tests: # Mantenha o nome do job genérico se quiser
+  run_node_tests:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
+        
       - name: ⚙️ Configurar Node.js (v20)
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: 📦 Instalar Dependências
+          
+      - name: 📦 Instalar Dependências (CodeceptJS)
+        # Garante que o npm install rode dentro da subpasta 'codeceptjs'
         run: npm install
         working-directory: codeceptjs
-      - name: 🏃 Rodar Testes
-        # Use o comando apropriado (npx cypress run, npx playwright test, npm test, etc.)
-        run: npx cypress run
+        
+      - name: 🏃 Rodar Testes CodeceptJS
+        # Comando correto para execução do CodeceptJS
+        run: npx codeceptjs run --steps
         working-directory: codeceptjs

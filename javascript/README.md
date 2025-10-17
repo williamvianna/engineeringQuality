@@ -5,13 +5,15 @@ Este projeto é um *showcase* de fundamentos da linguagem **JavaScript (ES6+)** 
 ## 🎯 Objetivo
 
 * Demonstrar proficiência nos fundamentos do JavaScript moderno (manipulação de arrays, Promises, async/await, classes).
-* Implementar testes unitários para a lógica de negócio, garantindo a robustez do código antes de ser usado em frameworks de automação (como Cypress ou Playwright).
+* Implementar **testes unitários** para a lógica de negócio, garantindo a robustez do código antes de ser usado em frameworks de automação (como Cypress ou Playwright).
 
 ## 🛠 Tecnologias
 
-* **Linguagem:** JavaScript (ES6+)
-* **Ambiente:** Node.js
-* **Testes Unitários:** Jest (ou Mocha/Chai - ajuste conforme a ferramenta que você usar)
+| Tecnologia | Descrição |
+| :--- | :--- |
+| **Linguagem:** | JavaScript (ES6+) |
+| **Ambiente:** | Node.js |
+| **Testes Unitários:** | **Jest** (ou outra ferramenta configurada, como Mocha/Chai) |
 
 ## 📁 Estrutura do Projeto
 
@@ -21,11 +23,17 @@ Este projeto é um *showcase* de fundamentos da linguagem **JavaScript (ES6+)** 
 
 ## ⚙️ Como Executar os Testes
 
-1.  **Instalação (dentro desta pasta):**
+Assumindo que você já clonou o monorepo central (`engineeringQuality`):
+
+1.  **Navegue para a pasta do projeto:**
+    ```bash
+    cd javascript
+    ```
+2.  **Instalação das dependências:**
     ```bash
     npm install
     ```
-2.  **Execução:**
+3.  **Execução dos Testes:**
     ```bash
     npm test
     ```

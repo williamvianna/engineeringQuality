@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'cypress' ou no próprio workflow
       - 'cypress/**'
       - '.github/workflows/cypress_ci.yml'
 
@@ -20,16 +21,19 @@ jobs:
           node-version: 20
 
       - name: 📦 Instalar Dependências
+        # Garante que o npm install rode dentro da subpasta 'cypress'
         run: npm install
         working-directory: cypress
 
-      - name: 🏃 Rodar Testes Cypress
+      - name: 🏃 Rodar Testes Cypress (Headless)
+        # Executa os testes no modo Headless
         run: npx cypress run
         working-directory: cypress
 
-      - name: ⬆️ Publicar Relatórios (Opcional)
-        if: always()
+      - name: ⬆️ Publicar Relatórios (Artefatos)
+        # Opcional, mas altamente recomendado: salva vídeos, screenshots e relatórios
+        if: always() # Roda mesmo se a etapa de teste falhar
         uses: actions/upload-artifact@v4
         with:
           name: cypress-results
-          path: cypress/reports
+          path: cypress/reports # Ajuste o caminho conforme a sua pasta de relatórios

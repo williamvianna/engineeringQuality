@@ -1,26 +1,31 @@
-name: 🌐 CI - Testes genéricos de UI/JS
+name: 🌐 CI - Testes Genéricos de UI/JS
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'frontend' ou no próprio workflow
       - 'frontend/**'
-      - '.github/workflows/frontend_ci.yml
+      - '.github/workflows/frontend_ci.yml'
 
 jobs:
-  run_node_tests: # Mantenha o nome do job genérico se quiser
+  run_node_tests:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
+        
       - name: ⚙️ Configurar Node.js (v20)
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: 📦 Instalar Dependências
+          
+      - name: 📦 Instalar Dependências (Frontend)
+        # Garante que o npm install rode dentro da subpasta 'frontend'
         run: npm install
         working-directory: frontend
-      - name: 🏃 Rodar Testes
-        # Use o comando apropriado (npx cypress run, npx playwright test, npm test, etc.)
-        run: npx cypress run
+        
+      - name: 🏃 Rodar Testes (Unitários/E2E/etc.)
+        # Utiliza o script 'test' definido no package.json da subpasta
+        run: npm test
         working-directory: frontend

@@ -4,20 +4,34 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'maestro' ou no próprio workflow
       - 'maestro/**'
       - '.github/workflows/maestro_ci.yml'
 
 jobs:
   run_maestro_tests:
+    # Atenção: Testes mobile em CI com Maestro geralmente exigem a instalação do Android SDK
+    # e um emulador, o que é complexo em CI/CD. Este CI valida a sintaxe e o comando CLI.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18 # Maestro depende do Node
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 📦 Instalar e Rodar Maestro
-        run: |
-          npm install -g maestro
-          maestro test maestro/flows/initial_test.yaml
+      - name: ⚙️ Configurar Node.js (v18)
+        # Necessário para a instalação da CLI do Maestro via npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 📦 Instalar Maestro CLI
+        # Instala a ferramenta globalmente, fora da subpasta
+        run: npm install -g maestro
+
+      # Opcional: Configurar o Android SDK e Emulador (Recomendado para execução funcional)
+      # Adicione steps para setup do Android SDK e launch do emulador aqui se for executar de fato.
+      
+      - name: 🏃 Rodar Testes Maestro
+        # O comando é executado dentro da pasta 'maestro' e aponta para o fluxo YAML
+        # Ajuste o caminho 'flows/initial_test.yaml' conforme a localização real.
+        run: maestro test flows/initial_test.yaml
         working-directory: maestro

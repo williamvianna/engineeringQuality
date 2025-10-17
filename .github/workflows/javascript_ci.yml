@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'javascript' ou no próprio workflow
       - 'javascript/**'
       - '.github/workflows/javascript_ci.yml'
 
@@ -19,12 +20,12 @@ jobs:
         with:
           node-version: 20
 
-      - name: 📦 Instalar Dependências (se houver)
-        # Se você usar Jest/Mocha/Chai, esta etapa é necessária
+      - name: 📦 Instalar Dependências (Unit Tests)
+        # Garante que o npm install rode dentro da subpasta 'javascript'
         run: npm install
         working-directory: javascript
 
       - name: 🏃 Rodar Testes Unitários
-        # Supondo que você usa um framework como Jest e o script no package.json é 'test'
+        # Utiliza o script 'test' definido no package.json da subpasta (ex: Jest/Mocha)
         run: npm test
         working-directory: javascript

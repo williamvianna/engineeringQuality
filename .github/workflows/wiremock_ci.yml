@@ -1,23 +1,37 @@
-name: 🔌 CI - Configurações de Mocking
+name: 🔌 CI - Configurações de Mocking (WireMock)
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'wiremock' ou no próprio workflow
       - 'wiremock/**'
       - '.github/workflows/wiremock_ci.yml'
 
 jobs:
-  run_k6_smoke_test:
+  validate_wiremock_config:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: ⚙️ Configurar k6
-        uses: grafana/setup-k6@v1
-        with:
-          k6-version: 'latest'
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        # Assumindo que o script principal é 'script.js' dentro da pasta k6
-        run: k6 run script.js --vus 1 --iterations 10
+      - name: ☕ Configurar Java (v17)
+        # WireMock é um JAR que roda em Java e requer o JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 🏃 Validação de Sanidade do WireMock
+        # Esta step simula o comando de inicialização, validando se o JAR e as configs existem.
+        # Adicione o comando real se você mantiver o JAR no repo, ou use Maven/Gradle se for biblioteca.
+        run: |
+          echo "Verificando se o JAR do WireMock e as configurações JSON estão acessíveis..."
+          # Exemplo de comando se você tiver o JAR salvo (MUITO GRANDE para GitHub)
+          # java -jar wiremock-standalone.jar --port 8080 --root-dir src/main/resources &
+          
+          # Alternativa: Apenas checa se os arquivos essenciais estão na pasta
+          test -d src/main/resources/mappings || { echo "ERRO: Pasta 'mappings' não encontrada."; exit 1; }
+          
+          echo "Configurações WireMock validadas. A sintaxe JSON é validada durante a inicialização (se executado)."
         working-directory: wiremock

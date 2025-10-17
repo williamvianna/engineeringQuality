@@ -1,25 +1,27 @@
 # 🤖 Automação de Testes com Robot Framework
 
-Este projeto demonstra a automação de testes utilizando o Robot Framework, um framework genérico de automação de código aberto que adota a abordagem *Keyword-Driven* e é facilmente legível por não-desenvolvedores.
+Este projeto demonstra a automação de testes utilizando o **Robot Framework**, um framework genérico de automação de código aberto que adota a abordagem **Keyword-Driven** e é facilmente legível por não-desenvolvedores.
 
 ## ✨ Destaques
-- Criação de Keywords personalizadas para reutilização de lógica.
-- Integração com a SeleniumLibrary para automação web.
-- Demonstração da sintaxe Gherkin (Given/When/Then) com o Robot.
+- Criação de **Keywords personalizadas** para reutilização eficiente de lógica.
+- Integração com a `SeleniumLibrary` para automação web robusta.
+- Demonstração da sintaxe Gherkin (**Given/When/Then**) com o Robot para cenários de teste claros.
 
 ## ⚙️ Pré-requisitos
-- Python 3.x
-- `pip` (gerenciador de pacotes Python)
+- Python 3.x (instalado e configurado no PATH).
+- `pip` (gerenciador de pacotes Python).
 
-## 🚀 Como rodar os testes
+## 🚀 Como Rodar os Testes
 
-1.  **Clone o repositório:**
+Assumindo que você já clonou o monorepo central (`engineeringQuality`):
+
+1.  **Navegue para a pasta do projeto Robot Framework:**
     ```bash
-    git clone [https://github.com/williamvianna/robotframework-tests.git](https://github.com/williamvianna/robotframework-tests.git)
-    cd robotframework-tests
+    cd robotframework
     ```
 2.  **Instale o Robot Framework e as bibliotecas necessárias:**
     ```bash
+    # Recomenda-se o uso de um ambiente virtual (venv)
     pip install robotframework robotframework-seleniumlibrary
     ```
 3.  **Execute a suíte de testes:**

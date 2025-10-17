@@ -4,24 +4,34 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'robotframework' ou no próprio workflow
       - 'robotframework/**'
       - '.github/workflows/robotframework_ci.yml'
 
 jobs:
-  build_and_test_java:
+  run_robot_tests:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: ☕ Configurar Java (v17)
-        uses: actions/setup-java@v4
+      - name: 🐍 Configurar Python
+        # O Robot Framework é construído sobre Python
+        uses: actions/setup-python@v5
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven' # Mude para 'gradle' se usar Gradle
+          python-version: '3.11'
+          cache: 'pip' 
 
-      - name: 🏗️ Compilar e Rodar Testes com Maven
-        # Ajuste este comando (mvn test ou mvn clean install) conforme o seu build
-        run: mvn test
+      - name: 📦 Instalar Dependências (Robot Framework)
+        # Instala o Robot Framework e todas as bibliotecas usadas (ex: SeleniumLibrary)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+        # O working-directory garante que o requirements.txt correto seja usado
+        working-directory: robotframework
+
+      - name: 🏃 Rodar Testes Robot Framework
+        # Executa a suíte de testes (por padrão, no modo headless para UI)
+        run: robot Tests/
+        # Ajuste 'Tests/' para o nome da sua pasta de suítes de teste, se for diferente
         working-directory: robotframework

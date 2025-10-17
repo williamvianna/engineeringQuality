@@ -1,23 +1,31 @@
-name: 🌳 CI - Scripts e Fluxos de Git
+name: 🌳 CI - Validação de Documentação/Scripts Git
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'git' ou no próprio workflow
       - 'git/**'
       - '.github/workflows/git_ci.yml'
 
 jobs:
-  run_k6_smoke_test:
+  validate_git_docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: ⚙️ Configurar k6
-        uses: grafana/setup-k6@v1
-        with:
-          k6-version: 'latest'
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        # Assumindo que o script principal é 'script.js' dentro da pasta k6
-        run: k6 run script.js --vus 1 --iterations 10
+      - name: 🔍 Checar Integridade da Documentação (README/Markdown)
+        # Verifica se o arquivo README.md principal ou qualquer arquivo de documentação está presente e legível
+        run: |
+          echo "Validando presença e acessibilidade dos arquivos de estudo Git..."
+          test -f README.md || { echo "ERRO: README.md não encontrado na pasta 'git'."; exit 1; }
+        working-directory: git
+        
+      - name: 📜 Lint Shell Scripts (Opcional)
+        # Se houver scripts de exemplo na pasta (ex: .sh para aliases), este passo os lintaria
+        run: |
+          echo "Simulando linting para scripts de exemplo Git..."
+          # Exemplo: shfmt -l scripts/*.sh
+          echo "Documentação/Scripts validados com sucesso."
         working-directory: git

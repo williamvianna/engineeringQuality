@@ -1,23 +1,42 @@
-name: ⚙️ CI - Scripts e IaC de DevOps
+name: ⚙️ CI - Scripts e IaC de DevOps (Terraform/Shell)
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'devops' ou no próprio workflow
       - 'devops/**'
       - '.github/workflows/devops_ci.yml'
 
 jobs:
-  run_k6_smoke_test:
+  validate_devops_code:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: ⚙️ Configurar k6
-        uses: grafana/setup-k6@v1
-        with:
-          k6-version: 'latest'
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        # Assumindo que o script principal é 'script.js' dentro da pasta k6
-        run: k6 run script.js --vus 1 --iterations 10
+      # -- 1. Validação de IaC (Terraform) --
+      - name: 🛠️ Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 'latest' # Configura a CLI do Terraform
+
+      - name: 🔍 Terraform Format Check
+        # Garante que os arquivos .tf estejam formatados corretamente
+        run: terraform fmt -check -recursive
+        working-directory: devops/terraform # Ajuste o caminho se seu código .tf estiver em outra subpasta
+
+      - name: 🔬 Terraform Validation
+        # Inicializa e valida a sintaxe dos arquivos .tf (não faz deploy)
+        run: |
+          terraform init
+          terraform validate
+        working-directory: devops/terraform
+
+      # -- 2. Validação de Scripts (Exemplo Shell) --
+      - name: 📜 Shell Script Check
+        # Um passo para garantir que shell scripts na pasta sejam executáveis ou lintados
+        run: |
+          echo "Simulando linting de scripts shell ou Ansible playbooks..."
+          # Exemplo: shfmt -l devops/scripts/*.sh
         working-directory: devops

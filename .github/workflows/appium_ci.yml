@@ -1,23 +1,37 @@
-name: 📱 CI - Testes Appium Cross-Platform
+name: 📱 CI - Testes Appium Cross-Platform (Node.js)
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'appium' ou no próprio workflow
       - 'appium/**'
       - '.github/workflows/appium_ci.yml'
 
 jobs:
-  run_maestro_tests:
+  run_appium_tests:
+    # Appium geralmente requer o Android SDK e, idealmente, um dispositivo virtual.
+    # Runners padrão podem ser limitados, mas vamos simular o setup de Node.js/WDIO.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18 # Maestro depende do Node
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 📦 Instalar e Rodar Maestro
+      - name: ⚙️ Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: 📦 Instalar Appium e Dependências do Projeto
         run: |
-          npm install -g maestro
-          maestro test maestro/flows/initial_test.yaml
+          npm install -g appium  # Instala o servidor Appium globalmente
+          npm install            # Instala as dependências do projeto Appium (ex: wdio-cli, specs)
+        working-directory: appium
+
+      # Nota: Para rodar Appium E2E de verdade, você precisaria configurar um emulador
+      # (requer steps como 'android-sdk-update-action' e 'emulator-launch').
+      # Este passo simula a execução baseada em Node.js (ex: WebdriverIO).
+
+      - name: 🏃 Rodar Testes Appium (WDIO/JS)
+        run: npm test # Ou use um comando específico como 'npx wdio run wdio.conf.js'
         working-directory: appium

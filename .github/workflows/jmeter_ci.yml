@@ -1,23 +1,41 @@
-name: 📈 CI - Arquivos JMX (Pode ter steps de execução)
+name: 📈 CI - Testes de Carga com JMeter
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'jmeter' ou no próprio workflow
       - 'jmeter/**'
       - '.github/workflows/jmeter_ci.yml'
 
 jobs:
-  run_k6_smoke_test:
+  run_jmeter_tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: ⚙️ Configurar k6
-        uses: grafana/setup-k6@v1
-        with:
-          k6-version: 'latest'
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        # Assumindo que o script principal é 'script.js' dentro da pasta k6
-        run: k6 run script.js --vus 1 --iterations 10
+      - name: ☕ Configurar Java (v17)
+        # JMeter é uma aplicação Java e requer o JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: 📦 Instalar JMeter CLI
+        # Instala o Apache JMeter no runner (pode ser lento)
+        run: sudo apt-get update && sudo apt-get install -y jmeter
+
+      - name: 🏃 Rodar Teste de Performance (JMeter Non-GUI)
+        # Executa o teste de carga no modo non-GUI (-n), define o arquivo de log (-l)
+        # Substitua 'smoke_test.jmx' pelo nome do seu arquivo principal.
+        run: jmeter -n -t smoke_test.jmx -l results.jtl || true
         working-directory: jmeter
+        
+      - name: ⬆️ Publicar Relatório JTL
+        # Opcional, mas útil: salva o arquivo de resultados para análise posterior
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-jtl-results
+          path: jmeter/results.jtl

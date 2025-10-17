@@ -1,23 +1,26 @@
-name: 🚀 CI - Estudos/Docs de Performance
+name: 🚀 CI - Validação de Documentação de Performance
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'performance' ou no próprio workflow
       - 'performance/**'
       - '.github/workflows/performance_ci.yml'
 
 jobs:
-  run_k6_smoke_test:
+  validate_performance_docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: ⚙️ Configurar k6
-        uses: grafana/setup-k6@v1
-        with:
-          k6-version: 'latest'
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        # Assumindo que o script principal é 'script.js' dentro da pasta k6
-        run: k6 run script.js --vus 1 --iterations 10
+      - name: 🔍 Checar Integridade da Documentação (README/Arquivos)
+        # Verifica se os arquivos de documentação essenciais estão presentes e legíveis
+        run: |
+          echo "Validando presença e acessibilidade dos arquivos de estudo de Performance..."
+          # Exemplo de verificação: garante que o README.md existe
+          test -f README.md || { echo "ERRO: README.md não encontrado na pasta 'performance'."; exit 1; }
+          # Se houver outros arquivos Markdown/PDF/scripts que você queira verificar, adicione aqui
+          echo "Documentação validada com sucesso."
         working-directory: performance

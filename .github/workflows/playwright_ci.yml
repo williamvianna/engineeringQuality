@@ -4,31 +4,40 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'playwright' ou no próprio workflow
       - 'playwright/**'
       - '.github/workflows/playwright_ci.yml'
 
 jobs:
   run_playwright_tests:
+    # Playwright requer ambiente Node.js
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
+        
+      - name: ⚙️ Configurar Node.js (v20)
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: 📦 Instalar Dependências
+      - name: 📦 Instalar Dependências (npm)
+        # Instala dependências do projeto (ex: @playwright/test)
         run: npm install
         working-directory: playwright
 
       - name: ⬇️ Instalar Browsers Playwright
+        # Instala os binários do Chromium, Firefox e WebKit no ambiente de CI
         run: npx playwright install --with-deps
         working-directory: playwright
 
       - name: 🏃 Rodar Testes Playwright
+        # Executa os testes (por padrão, em modo Headless)
         run: npx playwright test
         working-directory: playwright
 
       - name: ⬆️ Publicar Relatórios de Testes
+        # Publica o relatório HTML do Playwright como artefato do CI, mesmo que o teste falhe
         if: always()
         uses: actions/upload-artifact@v4
         with:

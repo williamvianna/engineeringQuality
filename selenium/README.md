@@ -1,24 +1,41 @@
 # 🌐 Automação Web Clássica com Selenium
 
-Repositório que demonstra a automação web utilizando o Selenium WebDriver. O projeto foca nos conceitos fundamentais do Selenium, como a manipulação de elementos, waits explícitos/implícitos e a abordagem Page Object Model (POM).
+Repositório que demonstra a automação web utilizando o **Selenium WebDriver**. O projeto foca nos conceitos fundamentais do Selenium, como a manipulação de elementos, *waits* explícitos/implícitos e a abordagem **Page Object Model (POM)**.
 
 ## ✨ Destaques
-- Implementação do Page Object Model para organização e manutenção.
-- Configuração para diferentes linguagens/bindings (Java, Python, C#, etc., dependendo do projeto).
-- Estratégias robustas de localização de elementos (XPath, CSS Selectors).
+- Implementação do Page Object Model para organização, reuso e manutenção.
+- Configuração para diferentes linguagens/bindings (ex: Java, Python) dependendo do projeto nesta pasta.
+- Estratégias robustas de localização de elementos (**XPath**, **CSS Selectors**) com foco em resiliência.
 
-## ⚙️ Configuração (Exemplo Python)
+## ⚙️ Pré-requisitos (Exemplo Python)
+- Python 3.x
+- **Ambiente Virtual** para isolamento de dependências.
+- Navegador (Chrome/Firefox) instalado.
 
-1.  **Instale o Selenium e o WebDriver Manager:**
+## 🚀 Como Rodar os Testes (Exemplo Python)
+
+Assumindo que você já clonou o monorepo central (`engineeringQuality`):
+
+1.  **Navegue para a pasta do projeto Selenium:**
     ```bash
-    pip install selenium webdriver-manager
+    cd selenium
     ```
-2.  **Atualize o caminho do WebDriver:** Certifique-se de que o driver do navegador (ex: `chromedriver`) esteja acessível ou use um gerenciador de drivers.
-3.  **Execute a classe de teste principal.**
+2.  **Crie e ative um ambiente virtual** (para isolamento, se aplicável).
+3.  **Instale as dependências:**
+    ```bash
+    pip install -r requirements.txt
+    # (ou pip install selenium webdriver-manager se não houver requirements.txt)
+    ```
+4.  **Execute a suíte de testes principal** (dependendo da linguagem):
+    ```bash
+    # Exemplo Python com PyTest
+    pytest
+    ```
 
 ## 📚 Tecnologias Envolvidas
 | Tecnologia | Descrição |
 | :--- | :--- |
 | **Selenium WebDriver** | Ferramenta principal para automação de browser. |
-| **Linguagem de Programação** | Java, Python, Ruby, ou outra utilizada no projeto. |
-| **POM** | Page Object Model (padrão de projeto). |
+| **Linguagem de Programação** | Java, Python, C#, ou outra utilizada no projeto. |
+| **POM** | Page Object Model (padrão de projeto essencial para Selenium). |
+| **WebDriver Manager** | (Se aplicável) Biblioteca para gerenciamento automático de drivers. |

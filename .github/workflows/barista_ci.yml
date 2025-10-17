@@ -1,23 +1,48 @@
-name: ☕ CI - Testes Barista/Android
+name: ☕ CI - Testes Barista/Android (Gradle)
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'barista' ou no próprio workflow
       - 'barista/**'
       - '.github/workflows/barista_ci.yml'
 
 jobs:
-  run_maestro_tests:
+  run_barista_tests:
+    # Testes de instrumentação Android são pesados. Usaremos ubuntu-latest e o Gradle
+    # para simular o processo de build, mas a execução em emulador é tipicamente mais complexa.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18 # Maestro depende do Node
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 📦 Instalar e Rodar Maestro
-        run: |
-          npm install -g maestro
-          maestro test maestro/flows/initial_test.yaml
+      - name: ☕ Configurar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # Instala o Android SDK necessário para compilar
+      - name: 🛠️ Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # Cache do Gradle para acelerar builds subsequentes
+      - name: 💾 Setup Gradle Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('barista/build.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: 🏃 Executar Testes Barista (Instalação e Build)
+        # O comando Barista é um teste de instrumentação Gradle.
+        # Estamos apenas verificando o build, pois rodar testes instrumentados requer um emulador.
+        run: ./gradlew assembleDebug connectedCheck
         working-directory: barista
+        
+      # Nota: Para rodar os testes de instrumentação (connectedCheck) de fato,
+      # seria necessário adicionar steps para iniciar e aguardar um Emulador Android,
+      # o que consome mais tempo e recursos no GitHub Actions. Este CI foca no build e compilação.

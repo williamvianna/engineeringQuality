@@ -1,28 +1,29 @@
 # 🎬 Automação Mobile com Maestro (Fluxos YAML)
 
-Este repositório contém fluxos de testes End-to-End para aplicativos móveis (Android e iOS) escritos utilizando o framework Maestro. A principal característica é a sintaxe YAML, que torna os testes extremamente legíveis e fáceis de manter.
+Este repositório contém fluxos de testes End-to-End para aplicativos móveis (Android e iOS) escritos utilizando o framework **Maestro**. A principal característica é a sintaxe **YAML**, que torna os testes extremamente legíveis e fáceis de manter, focados em gestos e interações do usuário.
 
 ## ✨ Destaques
-- Fluxos de teste declarativos, focados em gestos e interações do usuário.
-- Suporte nativo para tolerância a atrasos e flakiness em aplicativos móveis.
-- Testes compatíveis com iOS, Android, React Native e Flutter.
+- Fluxos de teste declarativos, focados na experiência real do usuário.
+- Suporte nativo para tolerância a atrasos e **flakiness** em aplicativos móveis.
+- Testes compatíveis com iOS, Android, React Native e Flutter, usando um único script.
 
 ## ⚙️ Pré-requisitos
 - O Maestro CLI deve estar instalado na sua máquina.
 - Um emulador/simulador (ou dispositivo real) configurado e rodando.
 
-## 🚀 Como rodar os testes
+## 🚀 Como Rodar os Testes
 
-1.  **Clone o repositório:**
+Assumindo que você já clonou o monorepo central (`engineeringQuality`):
+
+1.  **Navegue para a pasta do projeto Maestro:**
     ```bash
-    git clone [https://github.com/williamvianna/maestro-mobile-flows.git](https://github.com/williamvianna/maestro-mobile-flows.git)
-    cd maestro-mobile-flows
+    cd maestro
     ```
 2.  **Execute um fluxo específico:**
     ```bash
     maestro test caminho/para/seu_fluxo.yaml
     ```
-3.  **Execute em modo Studio (para debug):**
+3.  **Execute em modo Studio (para debug visual e *record*):**
     ```bash
     maestro studio
     ```
@@ -30,6 +31,6 @@ Este repositório contém fluxos de testes End-to-End para aplicativos móveis (
 ## 📚 Tecnologias Envolvidas
 | Tecnologia | Descrição |
 | :--- | :--- |
-| **Maestro** | Framework de testes de UI Mobile. |
-| **YAML** | Linguagem para definição dos fluxos. |
-| **Android / iOS** | Plataformas de destino. |
+| **Maestro** | Framework de testes de UI Mobile baseado em código declarativo. |
+| **YAML** | Linguagem para definição dos fluxos de teste. |
+| **Android / iOS** | Plataformas de destino compatíveis. |

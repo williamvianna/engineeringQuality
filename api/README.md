@@ -16,18 +16,29 @@ O repositório é tipicamente estruturado em:
 
 ## 🚀 Como Rodar
 
+Assumindo que você está no diretório raiz do monorepo (`engineeringQuality`):
+
 ### Opção 1: Via Postman
-1.  Importe os arquivos `.json` das pastas `collections/` e `environments/` para o seu Postman.
-2.  Selecione o ambiente desejado.
-3.  Utilize o **Collection Runner** para executar a suíte completa.
+1.  Importe os arquivos `.json` das pastas `collections/` e `environments/` para o seu Postman.
+2.  Selecione o ambiente desejado.
+3.  Utilize o **Collection Runner** para executar a suíte completa (ou via Newman).
 
 ### Opção 2: Via Código (Ex: REST Assured)
-1.  **Instale as dependências** (Maven/Gradle).
-2.  Execute os testes a partir da sua IDE ou linha de comando:
+1.  **Navegue para a pasta do projeto API:**
     ```bash
-    # Exemplo com Maven
-    mvn test
+    cd api
     ```
+2.  **Instale as dependências** (Maven/Gradle/npm, dependendo da linguagem usada nesta subpasta).
+3.  **Execute os testes a partir da linha de comando:**
+    ```bash
+    # Exemplo para projeto Java com Maven
+    mvn test
+    ```
+    ou
+    ```bash
+    # Exemplo para projeto Node.js com Supertest
+    npm test
+    ```
 
 ## 📚 Tecnologias Envolvidas
 | Tecnologia | Descrição |

@@ -1,23 +1,47 @@
-name: ☕ CI - Testes Espresso/Android
+name: ☕ CI - Testes Espresso/Android (Gradle)
 
 on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'espresso' ou no próprio workflow
       - 'espresso/**'
       - '.github/workflows/espresso_ci.yml'
 
 jobs:
-  run_maestro_tests:
+  run_espresso_tests:
+    # Testes nativos Android são complexos. Usaremos ubuntu-latest para o build.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18 # Maestro depende do Node
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
 
-      - name: 📦 Instalar e Rodar Maestro
-        run: |
-          npm install -g maestro
-          maestro test maestro/flows/initial_test.yaml
+      - name: ☕ Configurar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      # Instala e configura o Android SDK
+      - name: 🛠️ Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      # Cache do Gradle para acelerar builds subsequentes
+      - name: 💾 Setup Gradle Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('espresso/build.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: 🏃 Executar Testes Espresso (Build e Check)
+        # O comando 'connectedCheck' tenta rodar testes de instrumentação no dispositivo/emulador conectado.
+        # Estamos focando no build e validação da compilação.
+        run: ./gradlew assembleDebug connectedCheck
         working-directory: espresso
+        
+      # Observação: Para executar o 'connectedCheck' de forma funcional no CI,
+      # é necessário adicionar steps complexas para iniciar e aguardar um Emulador Android,
+      # o que pode ser lento. Esta configuração valida a integração Gradle/Espresso.

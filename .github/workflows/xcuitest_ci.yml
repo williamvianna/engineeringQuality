@@ -4,20 +4,34 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'xcuitest' ou no próprio workflow
       - 'xcuitest/**'
       - '.github/workflows/xcuitest_ci.yml'
 
 jobs:
-  run_maestro_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18 # Maestro depende do Node
+  run_xcuitest:
+    # 🚨 ESSENCIAL: XCUITest SÓ PODE RODAR EM AMBIENTE macOS
+    runs-on: macos-latest # Ou macos-14 para uma versão específica
 
-      - name: 📦 Instalar e Rodar Maestro
+    steps:
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
+      
+      # Não é necessário configurar o Xcode, pois ele já está pré-instalado no runner macOS
+
+      - name: 🛠️ Definir Versão do Xcode (Opcional)
+        # Se você precisar de uma versão específica do Xcode (Ex: 15.0)
+        # run: sudo xcode-select -switch /Applications/Xcode_15.0.app
+
+      - name: 🏃 Rodar Testes XCUITest com xcodebuild
+        # O comando xcodebuild é a forma CLI (headless) de rodar testes iOS
+        # Ajuste 'XCUITestProject' e 'MyApplicationUITests' conforme seu projeto/scheme.
         run: |
-          npm install -g maestro
-          maestro test maestro/flows/initial_test.yaml
+          xcodebuild clean test \
+            -project XCUITestProject.xcodeproj \
+            -scheme MyApplicationUITests \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest'
         working-directory: xcuitest
+        
+      # Nota: Para projetos mais complexos (Swift Package Manager, CocoaPods), 
+      # substitua '-project' por '-workspace' e adicione o comando 'pod install' ou 'swift build'.

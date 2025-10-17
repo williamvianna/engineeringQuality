@@ -4,24 +4,26 @@ on:
   push:
     branches: [ main ]
     paths:
+      # Roda a pipeline somente se houver mudanças na pasta 'ruby' ou no próprio workflow
       - 'ruby/**'
       - '.github/workflows/ruby_ci.yml'
 
 jobs:
-  build_and_test_java:
+  run_rspec_tests:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: ☕ Configurar Java (v17)
-        uses: actions/setup-java@v4
+      - name: ♦️ Configurar Ruby
+        # Configura o ambiente Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'maven' # Mude para 'gradle' se usar Gradle
+          ruby-version: '3.1' # Versão recomendada para CI
+          bundler-cache: true # Usa o cache de Bundler para acelerar o 'bundle install'
+        working-directory: ruby
 
-      - name: 🏗️ Compilar e Rodar Testes com Maven
-        # Ajuste este comando (mvn test ou mvn clean install) conforme o seu build
-        run: mvn test
+      - name: 🏃 Rodar Testes com RSpec
+        # Executa os testes usando o RSpec via Bundler
+        run: bundle exec rspec
         working-directory: ruby
