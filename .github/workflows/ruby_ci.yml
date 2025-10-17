@@ -23,7 +23,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-          bundler-cache: true
+
+      - name: 📦 Instala Dependências (Bundle Install)
+        run: bundle install 
+        working-directory: ruby
 
       - name: 🏃 Rodar Testes Ruby (RSpec/Cucumber)
         run: bundle exec rspec spec/
