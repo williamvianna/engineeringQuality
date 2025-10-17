@@ -16,12 +16,14 @@ jobs:
 
       - name: 🧪 Instala k6 Manualmente (Contorno de Action)
         run: |
-          sudo apt-get install -yq ca-certificates curl gnupg
-          sudo mkdir -p /etc/apt/keyrings
-          curl -1sLf "https://dl.k6.io/keybase.gpg" | sudo gpg --dearmor -o /etc/apt/keyrings/k6-archive-keyring.gpg
-          echo "deb [signed-by=/etc/apt/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
-          sudo apt-get update
-          sudo apt-get install k6
+          # Baixa a versão mais recente diretamente do repositório
+          curl -LO https://github.com/grafana/k6/releases/download/v0.49.0/k6_0.49.0_amd64.deb 
+          
+          # Instala o pacote .deb (sem depender de repositórios/chaves GPG)
+          sudo dpkg -i k6_0.49.0_amd64.deb
+          
+          # Remove o arquivo baixado
+          rm k6_0.49.0_amd64.deb
 
       - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
         run: k6 run script.js
