@@ -16,9 +16,10 @@ jobs:
 
       - name: 🧪 Instala k6 Manualmente (Contorno de Action)
         run: |
-          sudo apt-get install -yq --no-install-suggests --no-install-recommends ca-certificates curl
-          curl https://keybase.io/grafana/key.asc | sudo gpg --dearmor -o /usr/share/keyrings/grafana.gpg
-          echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+          sudo apt-get install -yq ca-certificates curl gnupg
+          sudo mkdir -p /etc/apt/keyrings
+          curl -1sLf "https://dl.k6.io/keybase.gpg" | sudo gpg --dearmor -o /etc/apt/keyrings/k6-archive-keyring.gpg
+          echo "deb [signed-by=/etc/apt/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
           sudo apt-get update
           sudo apt-get install k6
 
