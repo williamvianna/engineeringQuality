@@ -17,7 +17,7 @@ jobs:
 
       - name: ⚙️ Configurar k6 CLI
         # Utiliza a action oficial do Grafana para instalar a CLI do k6
-        uses: grafana/setup-k6@v1
+        uses: k6-io/action@v1.0.0
         with:
           k6-version: 'latest'
 
