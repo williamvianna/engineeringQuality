@@ -14,11 +14,14 @@ jobs:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: ⚙️ Configurar k6
-        uses: grafana/k6-action@v1.0.0
-        with:
-          k6-version: 'latest'
+      - name: 🧪 Instala k6 Manualmente (Contorno de Action)
+        run: |
+          sudo apt-get install -yq --no-install-suggests --no-install-recommends ca-certificates curl
+          curl https://keybase.io/grafana/key.asc | sudo gpg --dearmor -o /usr/share/keyrings/grafana.gpg
+          echo "deb [signed-by=/usr/share/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+          sudo apt-get update
+          sudo apt-get install k6
 
       - name: 🏃 Rodar Teste de Fumaça (Smoke Test)
-        run: k6 run script.js --vus 1 --iterations 10
+        run: k6 run script.js
         working-directory: k6
