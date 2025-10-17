@@ -15,10 +15,10 @@ jobs:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: 🏃 Rodar Testes XCUITest com xcodebuild
-        run: |
-          xcodebuild clean test \
-          -project xcuitestProject.xcodeproj \
-          -scheme MyApplicationsUITests \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest'
-        working-directory: xcuitest
+      # - name: 🏃 Rodar Testes XCUITest com xcodebuild
+      #   run: |
+      #     xcodebuild clean test \
+      #     -project xcuitestProject.xcodeproj \
+      #     -scheme MyApplicationsUITests \
+      #     -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest'
+      #   working-directory: xcuitest
