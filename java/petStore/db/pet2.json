@@ -1,0 +1,18 @@
+{
+  "id": 1976198045,
+  "category": {
+    "id": 1,
+    "name": "AX2345LORT"
+  },
+  "name": "Thor",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 20210812,
+      "name": "data"
+    }
+  ],
+  "status": "sold"
+}

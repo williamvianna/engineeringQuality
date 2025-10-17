@@ -1,0 +1,11 @@
+#contato {
+    background-color: #352728;
+}
+
+.contato {
+    padding-top: 93px;
+}
+
+.contato h2, .contato a {
+    text-align: center;
+}

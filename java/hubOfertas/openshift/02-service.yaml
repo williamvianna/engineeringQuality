@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ${PROJECT_NAME_SLUG}
+  namespace: ${KUBE_NAMESPACE}
+  labels:
+    app: ${PROJECT_NAME_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_NAME}
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_URI}
+spec:
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  selector:
+    run: ${PROJECT_NAME_SLUG}
+  type: ClusterIP
+  sessionAffinity: None

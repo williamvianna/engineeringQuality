@@ -1,0 +1,54 @@
+trigger:
+  branches:
+    include:
+      - master
+      - develop
+      - release/*
+      - hotfix/*
+
+parameters:
+  - name: Validation_Manual_Approval
+    displayName: Ativar Validation Manual Approval
+    type: boolean
+    default: false
+
+variables:
+  - name: isValidationManualApproval
+    value: ${{ parameters['Validation_Manual_Approval'] }}
+  - group: container-registry-commom
+  - group: sup-vik-hub-ofertas-front-common
+  - ${{ if or(eq(variables['Build.SourceBranchName'], 'master'), contains(variables['Build.SourceBranch'], 'refs/tags/')) }}:
+      - group: 'sup-vik-hub-ofertas-front-prd'
+  - ${{ elseif or(contains(variables['Build.SourceBranch'], 'refs/heads/release/'), contains(variables['Build.SourceBranch'], 'refs/heads/hotfix/')) }}:
+      - group: 'sup-vik-hub-ofertas-front-hlg'
+  - ${{ else }}:
+      - group: 'sup-vik-hub-ofertas-front-dev'
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: Tech/arq-devops-template-pipelines
+      ref: 'refs/heads/master'
+
+extends:
+  template: /node/rosa_pipeline/azure-pipeline.yml@templates
+  parameters:
+    CONFIG_FILE_FOLDER_USED_IN_BUILD: $(Build.SourcesDirectory)/config
+    CONFIG_FILE_NAME_USED_IN_BUILD: '.env'
+    CONFIG_FILE_NAME_USED_IN_SECRET_GENERATION: '.env'
+    COVERAGE_REPORT_PATH: $(COVERAGE_REPORT_PATH)
+    DEPLOYMENT_STRATEGY: 'ROSA_CORPORATIVO' # Define a estratégia de deploy utilizada. Valores válidos: 'ROSA_CORPORATIVO' e 'OCPV'
+    DOCKER_BUILD_ARGS: '--build-arg ENVIRONMENT=$(CI_ENVIRONMENT_NAME) --build-arg APP_VERSION=$(GitVersion.SemVer)' #Exemplo: --build-arg FIRST_ARG=FIRST_ARG_VALUE --build-arg SECOND_ARG=SECOND_ARG_VALUE
+    DOCKER_BUILD_CONTEXT_FOLDER: $(Build.SourcesDirectory)
+    DOCKERFILE_PATH: '$(Build.SourcesDirectory)/Dockerfile'
+    ENVIRONMENT_TO_DEPLOY_DEV: DEV_T_Supply_Core
+    ENVIRONMENT_TO_DEPLOY_HLG: HLG_T_Supply_Core
+    ENVIRONMENT_TO_DEPLOY_PRD: PRD_T_Supply_Core
+    IS_DEPLOYING_IN_DEVELOP_BRANCH: true # O parâmetro deverá ser definido com o valor false no caso de não existir ambiente de desenvolvimento para deploy em develop.
+    IS_USING_CONFIG_FILES: false
+    IS_USING_CONFIG_FILES_IN_BUILD: false
+    IS_USING_YARN: false
+    OPENSHIFT_TARGET_FILES: 'openshift/*.yaml'
+    PACKAGE_JSON_FILE_LOCATION: $(Build.SourcesDirectory)/package.json
+    PATH_TO_SCAN_IAC_FILES: $(Build.SourcesDirectory)/openshift

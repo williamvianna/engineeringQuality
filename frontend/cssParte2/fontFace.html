@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Font Face</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+
+        @font-face {
+            font-family: nadia;
+            src: local("Nadia Serif"),
+            local("Nadia-Serif"),
+            url(./fonts/nadia/nadia-serif.ttf) format("truetype"),
+            url(./fonts/nadia/nadia-serif.woff) format("woff"),
+            url(./fonts/nadia/nadia-serif.svg) format("svg");
+        }
+
+        @font-face {
+    font-family: 'chunkfiveregular';
+    src: url(./fonts/chunkfive/chunkfive-regular-webfont.woff2) format('woff2'),
+         url(./fonts/chunkfive/chunkfive-regular-webfont.woff) format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+        h1 {
+            font-family: chunkfiveregular, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Font Face</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, minus nostrum voluptates soluta voluptas obcaecati amet numquam libero illum, dolor quam dolorum animi quia nisi vel asperiores, ullam temporibus molestias necessitatibus? Praesentium voluptate illum nemo ratione nesciunt ex, quod vero exercitationem quis animi ipsam incidunt blanditiis, alias laboriosam obcaecati iste autem itaque aut. Consequuntur nam ad vitae consectetur repellendus, ipsa voluptatem explicabo ea voluptas id vero excepturi adipisci quos aliquam qui quam quasi reiciendis numquam eos beatae recusandae temporibus. Quas voluptate amet non accusamus recusandae doloremque quod, iste ut repellendus eum quidem assumenda deserunt minus qui iure obcaecati, dignissimos unde!</p>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Pseudo Classe Has</title>
+
+    <style>
+        p a {
+            color: red;
+            background-color: yellow;
+        }
+
+        p:has(.teste) {
+            background-color: #ccc;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: .5em;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+
+        tr:hover {
+            background-color: #e9e9e9;
+        }
+
+        tr:has(td:first-child input[type="checkbox"]:checked) {
+            background-color: #aaffaa;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>Email</th>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>William Vianna</td>
+            <td>william@gmail.com</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Renata Vicente</td>
+            <td>renata@gmail.com</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Vânia Vianna</td>
+            <td>vania@gmail.com</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Thallys Vianna</td>
+            <td>thallys@gmail.com</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Agatha Vianna</td>
+            <td>agatha@gmail.com</td>
+        </tr>
+    </table>
+    <hr>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil saepe ullam magnam sit. Vero quidem inventore
+        minus eos at, pariatur <a href="#">Clique aqui para saber mais</a> veniam corrupti doloremque quo iure similique, alias molestias obcaecati dolore.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil saepe ullam magnam sit. Vero quidem <a href="#" class="teste">Clique aqui para saber mais</a> inventore
+        minus eos at, pariatur veniam corrupti doloremque quo iure similique, alias molestias obcaecati dolore.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil saepe ullam magnam sit. Vero quidem inventore
+        minus eos at, pariatur veniam corrupti doloremque quo iure similique, alias molestias obcaecati dolore.</p>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<<<<<<< HEAD
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+input {
+  font-size: 1.2rem;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+select {
+  font-size: 1.2rem;
+  padding: 10px;
+  margin-bottom: 0px;
+}
+
+textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+button {
+  margin: 30px;
+  display: block;
+}
+
+.checkbox,
+.radio {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.checkbox label,
+.radio label {
+  margin: 0px;
+  display: inline-block;
+}
+
+.checkbox input,
+.radio input {
+  width: 20px;
+  height: 20px;
+  margin: 0px;
+}
+
+.comprar {
+  margin-top: 30px;
+  display: block;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  background: #caf;
+  border: none;
+  border-radius: 4px;
+  color: #217;
+  cursor: pointer;
+}
+=======
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+}
+
+label {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+input {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+button {
+  margin-top: 30px;
+  display: block;
+}
+
+.checkbox,
+.radio {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.checkbox label,
+.radio label {
+  margin: 0px;
+  display: inline-block;
+}
+
+.checkbox input,
+.radio input {
+  margin: 0px;
+  width: 20px;
+  height: 20px;
+}
+
+select {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+textarea {
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  font-size: 2rem;
+  padding: 10px 20px;
+  background: #caf;
+  border: none;
+  color: #217;
+  border-radius: 4px;
+  cursor: pointer;
+}
+>>>>>>> a1c16370c28f6ae8589752ca879221bc632b6394

@@ -1,0 +1,23 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: ${PROJECT_NAME_SLUG}
+  namespace: ${KUBE_NAMESPACE}
+  labels:
+    app: ${PROJECT_NAME_SLUG}
+    app.gitlab.com/env: ${CI_ENVIRONMENT_NAME}
+    custom-ingress: ${INGRESS_NAME}
+  annotations:
+    app.gitlab.com/app: ${CI_PROJECT_PATH_URI}
+spec:
+  host: ${PROJECT_NAME_SLUG}.${INGRESS_DOMAIN}
+  to:
+    kind: Service
+    name: ${PROJECT_NAME_SLUG}
+    weight: 100
+  port:
+    targetPort: 3000
+  wildcardPolicy: None
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None

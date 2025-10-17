@@ -1,0 +1,9 @@
+[
+    {"name":"Servi\u00E7os", "url": "/servicos",
+        "childs": [
+            {"name": "Listar", "url": "/servicos"},
+            {"name": "Criar", "url": "/servicos"}
+        ]
+    },
+    {"name":"Lojas", "url": "/lojas"}
+]

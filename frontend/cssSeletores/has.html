@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Has</title>
+
+    <style>
+        p a {
+            color: red;
+            background-color: yellow;
+        }
+
+        p:has(.teste) {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil saepe ullam magnam sit. Vero quidem inventore
+        minus eos at, pariatur <a href="#">Clique aqui para saber mais</a> veniam corrupti doloremque quo iure similique, alias molestias obcaecati dolore.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil saepe ullam magnam sit. Vero quidem <a href="#" class="teste">Clique aqui para saber mais</a> inventore
+        minus eos at, pariatur veniam corrupti doloremque quo iure similique, alias molestias obcaecati dolore.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil saepe ullam magnam sit. Vero quidem inventore
+        minus eos at, pariatur veniam corrupti doloremque quo iure similique, alias molestias obcaecati dolore.</p>
+</body>
+
+</html>

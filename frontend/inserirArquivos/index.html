@@ -1,0 +1,62 @@
+<html>
+
+	<head>
+		<title>Meu Primeiro Site</title>
+	</head>
+
+		<body>
+			<h1>Inserindo um vídeo local.</h1>
+			<p>
+			<!-- Autoplay, o Chrome não permite o vídeo iniciar, sem estar com o mudo (muted) ativo -->
+			<video
+			controls 
+			width="500"
+			height="" 
+			autoplay
+			muted 
+			poster="/inserir_arquivos/imagens/teclado.jpg"> <!-- Utilizado para inserir uma capa, antes de iniciar o vídeo -->
+			<source src="/inserir_arquivos/videos/Vídeo.mp4"> <!-- Utilizado para inserir vários formatos de vídeos, para rodar no navegador -->
+			<source src="/inserir_arquivos/videos/Vídeo.mkv">
+			<source src="/inserir_arquivos/videos/Vídeo.mov">
+			</video>
+			</p>
+
+			<h1>Inserindo um site dentro do outro <!-- Alguns sites não permitem ser incluídos --></h1>
+			<!-- Iframe: permite inserir youtube, google maps ou outro site dentro do meu site -->
+			<p>
+				<iframe
+					src="https://william-vianna.blogspot.com/"
+					width="500"
+					height="500">
+				</iframe>
+			</p>
+
+			<h1>Inserindo um vídeo (YouTube)</h1>
+			<p>
+				<iframe 
+					width="560" 
+					height="315" 
+					src="https://www.youtube.com/embed/0DFSZRlLvuM" 
+					title="YouTube video player" 
+					frameborder="0" 
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+					allowfullscreen>
+				</iframe>	
+			</p>
+
+			<h1>Inserindo o Google Maps</h1>
+			<p>
+				<iframe 
+					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.471673245886!2d-46.66020852576757!3d-23.587411262547665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59f1069d11d1%3A0xcb936109af9ce541!2sParque%20Ibirapuera!5e0!3m2!1spt-BR!2sbr!4v1685570455108!5m2!1spt-BR!2sbr" 
+					width="600" 
+					height="450" 
+					style="border:0;" 
+					allowfullscreen="" 
+					loading="lazy" 
+					referrerpolicy="no-referrer-when-downgrade">
+				</iframe>
+			</p>
+
+		</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Portfólio</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Projetos em HTML, CSS e JavaScript">
+    <meta name="author" content="William Vianna">
+    <meta name="keywords" content="html, css, javascript">
+
+    <link rel="stylesheet" href="./styles/estilo.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/f69d5e4e8e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <nav class="corSecundaria navbar navbar-expand-lg navbar-light">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link textoBranco" href="#projetos">Projetos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link textoBranco" href="#sobre-mim">Sobre mim</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link textoBranco" href="#depoimentos">Depoimentos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link textoBranco" href="#contato">Contato</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section class="jumbotron text-center corPrimaria">
+        <div class="container">
+            <img class="fotoPerfil" src="./imagens/William com livros.jpg" alt="foto do William">
+            <h1 class="jumbotron-heading textoBranco">William Vianna</h1>
+            <p class="lead textoBranco">Software Developer - Criador de Conteúdo</p>
+            <p>
+                <a href="#contato" class="btn btn-dark">Contato</a>
+            </p>
+            <a href="https://www.linkedin.com/in/william-vianna-218b7b71" target="_blank"> <i class="textoBranco fab fa-linkedin"></i></a>
+            <a href="https://github.com" target="_blank"> <i class="textoBranco icones fab fa-github"></i></a>
+            <a href="https://wa.me/5511947673756" target="_blank"> <i class="textoBranco icones fab fa-whatsapp"></i></a>
+        </div>
+    </section>
+    <div class="album py-5 bg-light" id="projetos">
+        <div class="container">
+            <h2 class="jumbotron-heading text-center titulosVerdes">Projetos</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="./imagens/Pagina do Curso.png" data-holder-rendered="true">
+                        <div class="card-body">
+                            <p class="card-text">Este é um projeto que eu desenvolvi usando as tecnologias:</p>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="https://projeto-css.netlify.app/" target="_blank"><button type="button" class="btn btn-sm btn-outline-success botao">Ver Projeto</button></a>
+                                    <a href="https://github.com/viannawp/projeto_css/blob/main/index.html" target="_blank"><button type="button" class="btn btn-sm btn-outline-primary">Código</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="./imagens/curriculo.png" data-holder-rendered="true">
+                        <div class="card-body">
+                            <p class="card-text">Meu currículo que eu
+                                desenvolvi usando as tecnologias:</p>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="https://curriculo-william.netlify.app/" target="_blank"><button type="button" class="btn btn-sm btn-outline-success botao">Ver Projeto</button></a>
+                                    <a href="https://github.com/viannawp/curriculo/blob/main/index.html" target="_blank"><button type="button" class="btn btn-sm btn-outline-primary">Código</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Sobre Mim -->
+    <section class="jumbotron text-center corPrimaria" id="sobre-mim">
+        <div class="container">
+            <h2 class="jumbotron-heading titulosBrancos">Sobre mim</h2>
+            <p class="lead textoBranco">Olá! Meu nome é William e estou na área de desenvolvimento há mais de 10 anos, atuando com Analista de Testes. Quero migrar para desenvolvedor front-end. Durante este período já participei de vários projetos em empresas como o banco Itaú, Claro, C&A, entre outras.</p>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="jumbotron text-center" style="background-color: white !important" id="depoimentos">
+        <div class="container">
+            <h2 class="jumbotron-heading text-center titulosVerdes">Depoimentos</h2>
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">É um profissional com um foco enorme em suas tarefas diárias, além da simples dedicação do dia-a-dia na empresa.</p> <br>
+                <footer class="blockquote-footer">CEO <cite title="Source Title">- Keeggo</cite></footer>
+            </blockquote> <br>
+
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">Um profissional super focado, dedicado, pontual com seus compromissos e ético. Interessado e super emplogado na área em que atua e nas demais, o que torna um profissional pró-ativo e altamente eficiente.</p> <br>
+                <footer class="blockquote-footer">Gerente de Tecnologia <cite title="Source Title">- Banco Original</cite>
+                </footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="corPrimaria" id="contato">
+        <div>
+            <div class="container-fluid">
+                <h3 style="padding-top: 60px;" class="text-center titulosBrancos">Disponível para oportunidades</h3>
+                <a href="mailto:viannawp@gmail.com">
+                    <h4 style="padding-bottom: 0px; margin-bottom: 0px;" class="text-center">👉🏽viannawp@gmail.com👈🏽</h4>
+                </a>
+                <a href="https://wa.me/5511947673756" target="_blank">
+                    <h4 style="padding-bottom: 60px; margin-bottom: 0px;" class="text-center">11 94767-3756<i class="textoVerde icones fab fa-whatsapp"></i></h4>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center corSecundaria textoFooter">
+        <p class="textoBranco">Copyright 2023 - William Vianna</p>
+    </footer>
+
+</body>
+
+</html>
