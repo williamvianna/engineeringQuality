@@ -7,6 +7,6 @@
     "test": "npx testcafe chrome tests/ || echo 'Ainda não há testes, CI OK.'"
   },
   "devDependencies": {
-    "testcafe": "^3.5.0"
+    "testcafe": "^3.x.x"
   }
 }

@@ -1,2 +1,3 @@
 # Dependências mínimas para o CI passar
 selenium
+pytest
