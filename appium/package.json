@@ -1,0 +1,14 @@
+{
+  "name": "projeto-appium-basico",
+  "version": "1.0.0",
+  "description": "Template básico para CI (Appium).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Nenhum teste Appium configurado. CI OK.\""
+  },
+  "keywords": ["ci-template", "appium"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}

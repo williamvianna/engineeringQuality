@@ -1,0 +1,14 @@
+{
+  "name": "projeto-node-basico",
+  "version": "1.0.0",
+  "description": "Template básico para CI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Nenhum teste configurado ainda. CI OK.\""
+  },
+  "keywords": ["ci-template"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
