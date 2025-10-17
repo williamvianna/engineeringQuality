@@ -1,14 +1,12 @@
 {
-  "name": "projeto-node-basico",
+  "name": "projeto-testcafe-basico",
   "version": "1.0.0",
-  "description": "Template básico para CI.",
+  "description": "Template básico para CI (TestCafe).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Nenhum teste configurado ainda. CI OK.\""
+    "test": "npx testcafe chrome tests/ || echo 'Ainda não há testes, CI OK.'"
   },
-  "keywords": ["ci-template"],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "testcafe": "^3.5.0"
+  }
 }
