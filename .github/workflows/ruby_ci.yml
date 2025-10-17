@@ -4,7 +4,11 @@ on:
   push:
     branches: [ main ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'ruby' ou no próprio workflow
+      - 'ruby/**'
+      - '.github/workflows/ruby_ci.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
       - 'ruby/**'
       - '.github/workflows/ruby_ci.yml'
 
@@ -16,14 +20,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: ♦️ Configurar Ruby
-        # Configura o ambiente Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1' # Versão recomendada para CI
-          bundler-cache: true # Usa o cache de Bundler para acelerar o 'bundle install'
+          ruby-version: '3.x'
+          bundler-cache: true
         working-directory: ruby
 
-      - name: 🏃 Rodar Testes com RSpec
-        # Executa os testes usando o RSpec via Bundler
-        run: bundle exec rspec
+      - name: 🏃 Rodar Testes Ruby (RSpec/Cucumber)
+        run: bundle exec rspec spec/
         working-directory: ruby
