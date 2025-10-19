@@ -22,7 +22,7 @@ jobs:
           cache: 'maven'
 
       - name: 🏗️ Compilar Pacotes (Build)
-        run: mvn clean install -DskipTests -f java/petStore/pom.xml
+        run: mvn clean install -DskipTests -f java/plataformaFilmes/pom.xml
 
       - name: 🏃 Rodar Testes (JUnit/Selenium)
-        run: mvn test -f java/petStore/pom.xml
+        run: mvn test -f java/plataformaFilmes/pom.xml
