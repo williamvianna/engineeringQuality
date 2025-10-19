@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
-
+      
       - name: 🐍 Configurar Python
         uses: actions/setup-python@v5
         with:
@@ -25,13 +25,14 @@ jobs:
           pip install yamllint
         
       - name: 🔍 Validação da Sintaxe YAML dos Workflows
-        run: |
-          echo "Verificando sintaxe YAML nos workflows..."
-          yamllint -d relaxed .github/workflows/*.yml
+        run: yamllint -d relaxed .github/workflows/*.yml
 
-      - name: 🏃 Rodar Smoke Test Genérico (Exemplo Shell Script)
-        run: |
-          echo "CI/CD Smoke Test Iniciado..."
-          echo "Nenhum projeto encontrado na pasta 'cicd/'. Smoke test neutralizado."
-          echo "CI/CD Smoke Test Concluído com Sucesso."
-        working-directory: .
+      - name: ✅ Smoke Test Neutralizado (Passa CI/CD)
+        run: echo "Nenhum projeto encontrado na pasta 'cicd/'. CI/CD Smoke Test concluído com sucesso."
+
+      # - name: 🏃 Rodar Smoke Test Genérico (Exemplo Shell Script)
+      #   run: |
+      #     echo "CI/CD Smoke Test Iniciado..."
+      #     echo "Nenhum projeto encontrado na pasta 'cicd/'. Smoke test neutralizado."
+      #     echo "CI/CD Smoke Test Concluído com Sucesso."
+      #   working-directory: .
