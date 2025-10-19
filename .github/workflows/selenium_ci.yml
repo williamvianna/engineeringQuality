@@ -25,5 +25,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r selenium/requirements.txt
         
-      - name: ⛔ DESATIVADO: 🏃 Rodar Testes Selenium com Pytest
-        run: echo "Nenhum teste de Selenium/Pytest para rodar. Ative esta step quando houver código em 'selenium/'."
+      # - name: 🏃 Rodar Testes Selenium com Pytest
+      #   run: echo "Nenhum teste de Selenium/Pytest para rodar."
