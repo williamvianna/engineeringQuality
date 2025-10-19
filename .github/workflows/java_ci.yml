@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'java' ou no próprio workflow
       - 'java/**'
       - '.github/workflows/java_ci.yml'
 
@@ -20,14 +19,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: 'maven' # Cache do Maven para acelerar a instalação de dependências
+          cache: 'maven'
 
       - name: 🏗️ Compilar Pacotes (Build)
-        # Compila o projeto e instala no repositório local do Maven, pulando o teste para a próxima step.
         run: mvn clean install -DskipTests
-        working-directory: java
+        working-directory: java/petStore
 
       - name: 🏃 Rodar Testes (JUnit/Selenium)
-        # Executa somente os testes, quebra a pipeline em caso de falha de teste.
         run: mvn test
-        working-directory: java
+        working-directory: java/petStore
