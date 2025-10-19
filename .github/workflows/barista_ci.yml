@@ -15,8 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🔒 Corrigir Permissão do Gradle Wrapper
-        run: chmod +x gradlew
-        working-directory: barista
+        run: find barista -name "gradlew" -exec chmod +x {} \;
 
       - name: ☕ Configurar JDK 17
         uses: actions/setup-java@v4
