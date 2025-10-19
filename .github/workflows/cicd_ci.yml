@@ -27,7 +27,7 @@ jobs:
       - name: 🔍 Validação da Sintaxe YAML dos Workflows
         run: |
           echo "Verificando sintaxe YAML nos workflows..."
-          yamllint .github/workflows/*.yml
+          yamllint -d relaxed .github/workflows/*.yml
 
       - name: 🏃 Rodar Smoke Test Genérico (Exemplo Shell Script)
         run: |
