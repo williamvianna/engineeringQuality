@@ -34,3 +34,4 @@ jobs:
           echo "CI/CD Smoke Test Iniciado..."
           echo "Nenhum projeto encontrado na pasta 'cicd/'. Smoke test neutralizado."
           echo "CI/CD Smoke Test Concluído com Sucesso."
+        working-directory: .
