@@ -1,14 +1,17 @@
 {
-  "name": "projeto-node-basico",
+  "name": "e2e-playwright",
   "version": "1.0.0",
-  "description": "Template básico para CI.",
+  "description": "Playwright E2E Tests.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Nenhum teste configurado ainda. CI OK.\""
+    "test": "playwright test"
   },
-  "keywords": ["ci-template"],
+  "keywords": ["playwright", "e2e"],
   "author": "",
   "license": "ISC",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@playwright/test": "^1.45.0", 
+    "playwright": "^1.45.0"
+  }
 }
