@@ -22,6 +22,10 @@ jobs:
       - name: 📦 Instalar Dependências (CodeceptJS)
         run: npm install
         working-directory: codeceptjs
+
+      - name: 🔒 Corrigir Permissões do Binário
+        run: chmod +x ./node_modules/.bin/codeceptjs
+        working-directory: codeceptjs
         
       - name: 🏃 Rodar Testes CodeceptJS
         run: npm exec -- codeceptjs run --steps
