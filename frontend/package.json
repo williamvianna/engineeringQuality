@@ -1,0 +1,11 @@
+{
+  "name": "frontend-tests",
+  "version": "1.0.0",
+  "description": "Frontend/UI Tests using a generic framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Frontend tests not configured yet'"
+  },
+  "author": "",
+  "license": "ISC"
+}
