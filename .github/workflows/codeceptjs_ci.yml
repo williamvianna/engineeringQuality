@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'codeceptjs' ou no próprio workflow
       - 'codeceptjs/**'
       - '.github/workflows/codeceptjs_ci.yml'
 
@@ -21,11 +20,9 @@ jobs:
           node-version: 20
           
       - name: 📦 Instalar Dependências (CodeceptJS)
-        # Garante que o npm install rode dentro da subpasta 'codeceptjs'
         run: npm install
         working-directory: codeceptjs
         
       - name: 🏃 Rodar Testes CodeceptJS
-        # Comando correto para execução do CodeceptJS
-        run: npx codeceptjs run --steps
+        run: npm test
         working-directory: codeceptjs
