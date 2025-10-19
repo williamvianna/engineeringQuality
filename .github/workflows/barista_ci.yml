@@ -4,14 +4,11 @@ on:
   push:
     branches: [ main ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'barista' ou no próprio workflow
       - 'barista/**'
       - '.github/workflows/barista_ci.yml'
 
 jobs:
   run_barista_tests:
-    # Testes de instrumentação Android são pesados. Usaremos ubuntu-latest e o Gradle
-    # para simular o processo de build, mas a execução em emulador é tipicamente mais complexa.
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
@@ -23,11 +20,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Instala o Android SDK necessário para compilar
       - name: 🛠️ Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # Cache do Gradle para acelerar builds subsequentes
       - name: 💾 Setup Gradle Cache
         uses: actions/cache@v4
         with:
@@ -37,12 +32,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('barista/build.gradle*') }}
           restore-keys: ${{ runner.os }}-gradle-
 
+      - name: 🔒 Corrigir Permissão do Gradle Wrapper
+        run: chmod +x gradlew
+        working-directory: barista
+
       - name: 🏃 Executar Testes Barista (Instalação e Build)
-        # O comando Barista é um teste de instrumentação Gradle.
-        # Estamos apenas verificando o build, pois rodar testes instrumentados requer um emulador.
         run: ./gradlew assembleDebug connectedCheck
         working-directory: barista
-        
-      # Nota: Para rodar os testes de instrumentação (connectedCheck) de fato,
-      # seria necessário adicionar steps para iniciar e aguardar um Emulador Android,
-      # o que consome mais tempo e recursos no GitHub Actions. Este CI foca no build e compilação.
