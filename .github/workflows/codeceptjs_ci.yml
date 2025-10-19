@@ -22,12 +22,16 @@ jobs:
       - name: 📦 Instalar Dependências (CodeceptJS)
         run: npm install
         working-directory: codeceptjs
-
-      - name: 🌐 Instalar Browsers do Playwright
-        run: npx playwright install
+        
+      - name: 🔒 Corrigir Permissões dos Binários (Playwright e CodeceptJS)
+        run: chmod +x ./node_modules/.bin/playwright
         working-directory: codeceptjs
-
-      - name: 🔒 Corrigir Permissões do Binário
+        
+      - name: 🌐 Instalar Browsers do Playwright
+        run: npx playwright install --with-deps
+        working-directory: codeceptjs
+        
+      - name: 🔒 Corrigir Permissões do Binário CodeceptJS
         run: chmod +x ./node_modules/.bin/codeceptjs
         working-directory: codeceptjs
         
