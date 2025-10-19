@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'selenium' ou no próprio workflow
       - 'selenium/**'
       - '.github/workflows/selenium_ci.yml'
 
@@ -16,23 +15,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🐍 Configurar Python
-        # Selenium em Python é muito comum; configuramos o ambiente aqui.
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip' 
         
       - name: 📦 Instalar Dependências (Selenium/Pytest)
-        # Instala Selenium, webdriver-manager e o Pytest via requirements.txt
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-        working-directory: selenium
-
-      # Nota: O 'webdriver-manager' deve cuidar do download e do PATH do ChromeDriver
-      # no ambiente CI, facilitando a execução.
-
-      - name: 🏃 Rodar Testes Selenium com Pytest
-        # Executa a suíte de testes na subpasta 'selenium'
-        run: pytest
-        working-directory: selenium
+          pip install -r selenium/requirements.txt
+        
+      - name: ⛔ DESATIVADO: 🏃 Rodar Testes Selenium com Pytest
+        run: echo "Nenhum teste de Selenium/Pytest para rodar. Ative esta step quando houver código em 'selenium/'."
