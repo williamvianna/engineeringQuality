@@ -18,12 +18,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          
-      - name: 🖥️ Instalar e Configurar Dependências de UI (para XVFB)
-        uses: cypress-io/github-action@v1
-        with:
-          runTests: false
-          start: false
+
+      - name: 🖥️ Iniciar XServer Virtual (XVFB)
+        uses: crazy-max/ghaction-xvfb@v1
         
       - name: 📦 Instalar Dependências (CodeceptJS)
         run: npm install
