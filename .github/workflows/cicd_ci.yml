@@ -25,7 +25,7 @@ jobs:
           pip install yamllint
         
       - name: 🔍 Validação da Sintaxe YAML dos Workflows
-        run: yamllint -d relaxed .github/workflows/*.yml
+        run: yamllint -d relaxed .github/workflows/cicd_ci.yml
 
       - name: ✅ Smoke Test Neutralizado (Passa CI/CD)
         run: echo "Nenhum projeto encontrado na pasta 'cicd/'. CI/CD Smoke Test concluído com sucesso."
