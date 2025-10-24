@@ -18,5 +18,20 @@ export default {
     cy.get('.errorLabel')
         .should('be.visible')
         .should('have.text', mensagem)
+  },
+
+  preencheNome(nome) {
+    cy.get('#user')
+        .type(nome)
+  },
+
+  preencheEmail(email) {
+    cy.get('#email')
+        .type(email)
+  },
+
+  preencheSenha(senha) {
+    cy.get('#password')
+        .type(senha)
   }
 }

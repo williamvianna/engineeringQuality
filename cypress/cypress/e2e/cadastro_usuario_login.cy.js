@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import {faker} from '@faker-js/faker'
 import commum_page from '../support/pages/commum_page'
 import cadastro_page from '../support/pages/cadastro_usuario_page'
 
@@ -14,19 +15,31 @@ describe('Cadastro de usuário', () => {
   })
 
   it('Campo E-mail vazio', () => {
-
+    cadastro_page.preencheNome(faker.person.fullName())
+    cadastro_page.clicarCadastrar()
+    cadastro_page.validarMensagemErro('O campo e-mail deve ser prenchido corretamente')
 })
 
   it('Campo E-mail inválido', () => {
-
+    cadastro_page.preencheNome(faker.person.fullName())
+    cadastro_page.preencheEmail(faker.person.firstName())
+    cadastro_page.clicarCadastrar()
+    cadastro_page.validarMensagemErro('O campo e-mail deve ser prenchido corretamente')
 })
 
   it('Campo Senha vazio', () => {
-
+    cadastro_page.preencheNome(faker.person.fullName())
+    cadastro_page.preencheEmail(faker.internet.email())
+    cadastro_page.clicarCadastrar()
+    cadastro_page.validarMensagemErro('O campo senha deve ter pelo menos 6 dígitos')
 })
 
-  it('Campo Senha inválido', () => {
-
+  it.only('Campo Senha inválido', () => {
+    cadastro_page.preencheNome(faker.person.fullName())
+    cadastro_page.preencheEmail(faker.internet.email())
+    cadastro_page.preencheSenha('123')
+    cadastro_page.clicarCadastrar()
+    cadastro_page.validarMensagemErro('O campo senha deve ter pelo menos 6 dígitos')
 })
 
 it('Cadastro com sucesso', () => {
