@@ -33,5 +33,9 @@ export default {
   preencheSenha(senha) {
     cy.get('#password')
         .type(senha)
+  },
+
+  validaNome(nome) {
+    
   }
 }
