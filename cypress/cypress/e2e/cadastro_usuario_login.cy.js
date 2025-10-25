@@ -34,7 +34,7 @@ describe('Cadastro de usuário', () => {
     cadastro_page.validarMensagemErro('O campo senha deve ter pelo menos 6 dígitos')
 })
 
-  it.only('Campo Senha inválido', () => {
+  it('Campo Senha inválido', () => {
     cadastro_page.preencheNome(faker.person.fullName())
     cadastro_page.preencheEmail(faker.internet.email())
     cadastro_page.preencheSenha('123')
@@ -43,6 +43,10 @@ describe('Cadastro de usuário', () => {
 })
 
 it('Cadastro com sucesso', () => {
-  
+  cadastro_page.preencheNome(faker.person.fullName())
+  cadastro_page.preencheEmail(faker.internet.email())
+  cadastro_page.preencheSenha('123')
+  cadastro_page.clicarCadastrar()
+  cadastro_page.validarMensagemErro('O campo senha deve ter pelo menos 6 dígitos')
   })
 });
