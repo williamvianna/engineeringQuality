@@ -4,36 +4,44 @@ on:
   push:
     branches: [ main ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'cypress' ou no próprio workflow
       - 'cypress/**'
       - '.github/workflows/cypress_ci.yml'
 
 jobs:
-  run_cypress_tests:
+  run_cypress:
     runs-on: ubuntu-latest
+
+    env:
+      CYPRESS_LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+      CYPRESS_LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
+
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: ⚙️ Configurar Node.js (v20)
-        uses: actions/setup-node@v4
+      - name: ⚙️ Instalar Dependências
+        run: npm ci
+        working-directory: cypress
+
+      - name: 🏃 Executando Testes Cypress
+        uses: cypress-io/github-action@v6
         with:
-          node-version: 20
+          browser: chrome
+          working-directory: cypress
+          record: false
 
-      - name: 📦 Instalar Dependências
-        # Garante que o npm install rode dentro da subpasta 'cypress'
-        run: npm install
+      - name: 📝 Gerar Relatórios Mochawesome
+        if: always()
+        run: npx mochawesome-merge "cypress/mochawesome-report/*.json" > cypress/mochawesome.json && npx marge cypress/mochawesome.json -f report -o cypress/mochawesome-report
         working-directory: cypress
 
-      - name: 🏃 Rodar Testes Cypress (Headless)
-        # Executa os testes no modo Headless
-        run: npx cypress run
-        working-directory: cypress
-
-      - name: ⬆️ Publicar Relatórios (Artefatos)
-        # Opcional, mas altamente recomendado: salva vídeos, screenshots e relatórios
-        if: always() # Roda mesmo se a etapa de teste falhar
+      - name: 📦 Publicar Relatórios e Evidências
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-results
-          path: cypress/reports # Ajuste o caminho conforme a sua pasta de relatórios
+          name: evidencias-cypress
+          path: |
+            cypress/mochawesome-report
+            cypress/screenshots
+            cypress/videos
+          retention-days: 3

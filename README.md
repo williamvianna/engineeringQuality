@@ -1,5 +1,15 @@
 # 🚀 Engineering Quality Showcase | William Vianna
 
+## ⚙️ Status e Tecnologias Chave
+
+[![CI Status](https://github.com/williamvianna/engineeringQuality/actions/workflows/cypress_ci.yml/badge.svg)](https://github.com/williamvianna/engineeringQuality/actions/workflows/cypress_ci.yml)
+![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/CI/CD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![Quality Gate](https://img.shields.io/badge/Quality%20Gate-Passed-2ECC71?style=for-the-badge&logo=cypress&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)
+
+---
+
 Bem-vindo ao meu portfólio central de Engenharia de Software e Qualidade.
 
 Este repositório serve como a porta de entrada para uma coleção diversificada de projetos que demonstram minha expertise técnica, desde a **automação robusta de testes** até a aplicação de **princípios de arquitetura e gerenciamento de projetos**.
