@@ -1,0 +1,37 @@
+name: 🌐 Publicar Relatório de Testes
+
+on:
+  workflow_run:
+    workflows: ["CI - Testes E2E Cypress"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: ⬇️ Baixar Artefato de Evidências
+        uses: actions/download-artifact@v4
+        with:
+          name: evidencias-cypress
+          path: public_report
+
+      - name: 📁 Preparar Relatório para Publicação
+        run: |
+          # O arquivo HTML final e suas pastas de suporte (assets) estão dentro de 
+          # public_report/cypress/mochawesome-report. Precisamos movê-los para a raiz.
+          cp -r public_report/cypress/mochawesome-report/. .
+
+      - name: 🏗️ Configurar o GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 🚀 Fazer Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          folder: .

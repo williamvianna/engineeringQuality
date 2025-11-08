@@ -3,6 +3,7 @@
 ## ⚙️ Status e Tecnologias Chave
 
 [![CI Status](https://github.com/williamvianna/engineeringQuality/actions/workflows/cypress_ci.yml/badge.svg)](https://github.com/williamvianna/engineeringQuality/actions/workflows/cypress_ci.yml)
+[![Relatório de Testes](https://img.shields.io/badge/Relat%C3%B3rio%20Cypress-Ver%20%C3%BAltimos%20Testes-17202C?style=for-the-badge&logo=cypress&logoColor=white)](<SUA_URL_DO_GITHUB_PAGES>)
 ![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/CI/CD-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 ![Quality Gate](https://img.shields.io/badge/Quality%20Gate-Passed-2ECC71?style=for-the-badge&logo=cypress&logoColor=white)
