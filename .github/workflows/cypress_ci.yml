@@ -19,7 +19,10 @@ jobs:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v4
 
-      - name: ⚙️ Instalar Dependências
+      - name: ⚙️ Instalar Ferramentas Globais
+        run: npm install -g mochawesome-merge mochawesome-report-generator
+
+      - name: ⚙️ Instalar Dependências do Cypress
         run: npm ci
         working-directory: cypress
 
@@ -32,8 +35,7 @@ jobs:
 
       - name: 📝 Gerar Relatórios Mochawesome
         if: always()
-        run: npx mochawesome-merge "cypress/mochawesome-report/*.json" > cypress/mochawesome.json && npx marge cypress/mochawesome.json -f report -o cypress/mochawesome-report
-        working-directory: cypress
+        run: mochawesome-merge cypress/mochawesome-report/*.json > cypress/mochawesome.json && marge cypress/mochawesome.json -f report -o cypress/mochawesome-report
 
       - name: 📦 Publicar Relatórios e Evidências
         if: always()
