@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "report:merge": "mochawesome-merge --reportDir mochawesome-report > mochawesome.json",
+    "report:merge": "mochawesome-merge mochawesome-report/**/*.json > mochawesome.json", 
     "report:generate": "marge mochawesome.json -f report -o mochawesome-report",
     "report:full": "npm run report:merge && npm run report:generate"
   },
