@@ -5,24 +5,23 @@ module.exports = defineConfig({
     baseUrl: "https://automationpratice.com.br/",
     defaultCommandTimeout: 5000,
     setupNodeEvents(on, config) {
-      require('cypress-mochawesome-reporter/plugin')(on);
     },
 
-    reporter: 'cypress-mochawesome-reporter',
+    reporter: 'mochawesome',
     reporterOptions: {
-      reportDir: 'cypress/mochawesome-report',
+      reportDir: 'mochawesome-report',
       charts: true,
       reportPageTitle: 'Relatório Cypress',
       embeddedScreenshots: true,
       overwrite: false,
-      html: true,
+      html: false,
       json: true
     },
 
     screenshotOnRunFailure: true,
-    screenshotsFolder: 'cypress/screenshots',
+    screenshotsFolder: 'screenshots',
 
     video: true,
-    videosFolder: 'cypress/videos'
+    videosFolder: 'videos'
   },
 });
