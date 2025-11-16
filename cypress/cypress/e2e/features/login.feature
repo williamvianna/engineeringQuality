@@ -8,14 +8,14 @@ Feature: Login
         When I click on Login
         Then I see the message "E-mail inválido."
 
-    # Scenario: Login com campo senha vazio
-    #     Given I am on login screen
-    #     And fill e-mail
-    #     When I click on Login
-    #     Then I see the message "Senha inválida."
+    Scenario: Login com campo senha vazio
+        Given I am on login screen
+        And I fill e-mail
+        When I click on Login
+        Then I see the message "Senha inválida."
 
-    # Scenario: Login com sucesso
-    #     Given I am on login screen
-    #     And I fill my credencials
-    #     When I click on Login
-    #     Then I see success message
+    Scenario: Login com sucesso
+        Given I am on login screen
+        And I fill my credencials
+        When I click on Login
+        Then I see success message
