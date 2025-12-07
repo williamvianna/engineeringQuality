@@ -1,0 +1,50 @@
+name: 🧪 CI - Testes VBScript
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'vbscript/**'
+      - '.github/workflows/vbscript_ci.yml'
+
+jobs:
+  run_vbscript_tests:
+    runs-on: windows-latest
+    
+    steps:
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v4
+        
+      - name: 🏃 Rodar Todos os Testes VBScript (Dinâmico)
+        working-directory: vbscript
+        shell: powershell
+        run: |
+          # 1. Encontra todos os arquivos .vbs na pasta atual (vbscript/)
+          $files = Get-ChildItem -Path . -Filter "*.vbs"
+          
+          # 2. Verifica se algum arquivo foi encontrado
+          if ($files.Count -eq 0) {
+              Write-Host "Nenhum arquivo VBScript (*.vbs) encontrado para execução."
+              exit 0 # Sai com sucesso se não houver testes
+          }
+          
+          Write-Host "Iniciando a execução de $($files.Count) testes VBScript..."
+          
+          # 3. Itera sobre cada arquivo e o executa
+          foreach ($file in $files) {
+              Write-Host "--- Executando teste: $($file.Name) ---"
+              # O comando 'cscript //NOLOGO' executa o script no terminal
+              # O //B evita prompts de interação (como MsgBox) para não travar a pipeline
+              cscript //NOLOGO //B $($file.Name)
+              
+              # Verifica o código de saída do cscript.
+              # Se o script VBScript usar 'WScript.Quit 1' para falha, $LASTEXITCODE será 1.
+              if ($LASTEXITCODE -ne 0) {
+                  Write-Error "O teste $($file.Name) falhou com código de saída $LASTEXITCODE."
+                  exit $LASTEXITCODE
+              }
+          }
+          Write-Host "Todos os testes VBScript executados com sucesso."
+          
+          # NOTA: O teste "passa" se o script for executado sem erros de sintaxe ou runtime.
+          # Para falhar o build, o script VBScript precisa conter 'WScript.Quit 1' em caso de falha.

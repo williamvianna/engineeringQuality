@@ -57,4 +57,5 @@ Abaixo estão os links diretos para cada área de especialização, cada um com 
 | 🔌 **Supertest** | Testes de API mais simples e diretos para **aplicações Node.js**, utilizando a biblioteca Supertest. | [Ver Projeto](https://github.com/williamvianna/engineeringQuality/tree/main/supertest) |
 | ☕ **TestCafe** | Testes End-to-End **livres de *WebDriver***, focados em estabilidade e configuração simplificada. | [Ver Projeto](https://github.com/williamvianna/engineeringQuality/tree/main/testcafe) |
 | 🔌 **WireMock** | Exemplos de **simulação e *stubbing*** de APIs externas para isolar e testar componentes de software. | [Ver Projeto](https://github.com/williamvianna/engineeringQuality/tree/main/wiremock) |
+| 🗃️ **VBScript** | Exemplos de **automação e scripts** de teste utilizando a linguagem VBScript (e.g., testes legados ou de ambiente). | [Ver Projeto](https://github.com/williamvianna/engineeringQuality/tree/main/vbscript) |
 | 📱 **XCUITest** | Testes de UI e funcionalidade nativos para **aplicativos iOS/iPadOS** dentro do ecossistema Apple. | [Ver Projeto](https://github.com/williamvianna/engineeringQuality/tree/main/xcuitest) |
