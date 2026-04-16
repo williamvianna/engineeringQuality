@@ -1,3 +1,4 @@
+package operadoresAtribuicaoCumulativa;
 import java.util.Scanner;
 
 public class scanner {

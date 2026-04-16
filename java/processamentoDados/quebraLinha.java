@@ -1,6 +1,8 @@
+package processamentoDados;
+
 import java.util.Scanner;
 
-public class quebraLinha {
+public class QuebraLinha {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

@@ -1,3 +1,5 @@
-void main() {
-    IO.println("Olá mundo!");
-}
+// package segundoProjeto;
+
+// void main() {
+//     IO.println("Olá mundo!");
+// }

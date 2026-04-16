@@ -1,3 +1,5 @@
+package mba;
+
 class Incremental {
     private static Incremental instance;
     private static int count = 0;

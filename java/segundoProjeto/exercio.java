@@ -1,3 +1,4 @@
+package segundoProjeto;
 import java.util.Locale;
 
 public class exercio {

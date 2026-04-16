@@ -1,3 +1,5 @@
+package mba;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -48,7 +50,7 @@ class LoggerFactory {
 }
 
 // Classe cliente que utiliza a ferramenta de log
-public class Main {
+public class exercicio33 {
     public static void main(String[] args) {
         String logType = args.length > 0 ? args[0] : "";
 

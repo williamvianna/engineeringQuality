@@ -1,3 +1,5 @@
+package primeiroProjeto.src;
+
 import java.util.Locale;
 
 public class program {

@@ -1,3 +1,5 @@
+package mba;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +40,7 @@ abstract class Aplicacao {
 
     // Método para armazenar o nome criado
     public void armazenarNome() {
-        Nome nome = criarNome();
+        Nome nome = criarNome(null);
         nomes.add(nome);
     }
 
@@ -80,6 +82,11 @@ class Nome {
     public Nome(String nome, String sobrenome) {
         this.nome = nome;
         this.sobrenome = sobrenome;
+    }
+
+    public void armazenarNome() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'armazenarNome'");
     }
 
     public String getNomeCompleto() {
