@@ -2,7 +2,9 @@ name: ☕ CI - Testes Espresso/Android (Gradle)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ] # Roda o CI ao commitar na main ou na develop
+  pull_request:
+    branches: [ main ] # Roda o CI também quando você abrir um PR para juntar a develop na main
     paths:
       - 'espresso/**'
       - '.github/workflows/espresso_ci.yml'
@@ -12,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout do Código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: ☕ Configurar JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '17'
