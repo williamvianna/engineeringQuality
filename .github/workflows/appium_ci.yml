@@ -15,6 +15,7 @@ jobs:
     # Appium geralmente requer o Android SDK e, idealmente, um dispositivo virtual.
     # Runners padrão podem ser limitados, mas vamos simular o setup de Node.js/WDIO.
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5

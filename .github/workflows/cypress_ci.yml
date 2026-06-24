@@ -12,7 +12,7 @@ on:
 jobs:
   run_cypress:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 15
     env:
       CYPRESS_LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
       CYPRESS_LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}

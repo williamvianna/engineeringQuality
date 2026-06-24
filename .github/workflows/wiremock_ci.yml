@@ -13,6 +13,7 @@ on:
 jobs:
   validate_wiremock_config:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5
