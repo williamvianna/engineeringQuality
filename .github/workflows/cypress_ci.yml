@@ -29,23 +29,20 @@ jobs:
         working-directory: cypress
 
       - name: 🏃 Executando Testes Cypress
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          working-directory: cypress
-          record: false
+        id: cypress_tests
+        run: npx cypress run --headless
+        working-directory: cypress
 
-      - name: 📝 Gerar Relatórios Mochawesome
-        if: always()
-        run: mochawesome-merge cypress/mochawesome-report/*.json > cypress/mochawesome.json && marge cypress/mochawesome.json -f report -o cypress/mochawesome-report
+      - name: 📊 Gerar Relatórios Mochawesome
+        # Só tenta mesclar os relatórios se a etapa anterior realmente rodou e gerou arquivos
+        if: always() && steps.cypress_tests.outcome == 'success'
+        run: npx mochawesome-merge cypress/mochawesome-report/*.json > cypress/mochawesome.json && npx marge cypress/mochawesome.json -f report -o cypress/mochawesome-report
+        working-directory: cypress
 
-      - name: 📦 Publicar Relatórios e Evidências
+      - name: ⬆️ Publicar Relatórios e Evidências
         if: always()
         uses: actions/upload-artifact@v5
         with:
-          name: evidencias-cypress
-          path: |
-            cypress/mochawesome-report
-            cypress/screenshots
-            cypress/videos
-          retention-days: 3
+          name: cypress-report
+          path: cypress/cypress/mochawesome-report
+          retention-days: 30
