@@ -2,13 +2,15 @@ name: 📦 CI - JavaScript Fundamentals/Unit Tests
 
 on:
   push:
-    branches: [ main, develop ] # Roda o CI ao commitar na main ou na develop
-  pull_request:
-    branches: [ main ] # Roda o CI também quando você abrir um PR para juntar a develop na main
+    branches: [ main, develop ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'javascript' ou no próprio workflow
       - 'javascript/**'
-      - '.github/workflows/javascript_ci.yml'
+      - '.github/workflows/javascript.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'javascript/**'
+      - '.github/workflows/javascript.yml'
 
 jobs:
   run_js_tests:
@@ -24,7 +26,6 @@ jobs:
           node-version: 24
 
       - name: 📦 Instalar Dependências (Unit Tests)
-        # Garante que o npm install rode dentro da subpasta 'javascript'
         run: npm install
         working-directory: javascript
 

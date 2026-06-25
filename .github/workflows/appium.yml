@@ -2,13 +2,15 @@ name: 📱 CI - Testes Appium Cross-Platform (Node.js)
 
 on:
   push:
-    branches: [ main, develop ] # Roda o CI ao commitar na main ou na develop
-  pull_request:
-    branches: [ main ] # Roda o CI também quando você abrir um PR para juntar a develop na main
+    branches: [ main, develop ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'appium' ou no próprio workflow
       - 'appium/**'
-      - '.github/workflows/appium_ci.yml'
+      - '.github/workflows/appium.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'appium/**'
+      - '.github/workflows/appium.yml'
 
 jobs:
   run_appium_tests:

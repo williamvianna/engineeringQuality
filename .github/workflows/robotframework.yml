@@ -2,13 +2,15 @@ name: 🤖 CI - Testes Robot Framework
 
 on:
   push:
-    branches: [ main, develop ] # Roda o CI ao commitar na main ou na develop
-  pull_request:
-    branches: [ main ] # Roda o CI também quando você abrir um PR para juntar a develop na main
+    branches: [ main, develop ]
     paths:
-      # Roda a pipeline somente se houver mudanças na pasta 'robotframework' ou no próprio workflow
       - 'robotframework/**'
-      - '.github/workflows/robotframework_ci.yml'
+      - '.github/workflows/robotframework.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'robotframework/**'
+      - '.github/workflows/robotframework.yml'
 
 jobs:
   run_robot_tests:
@@ -19,22 +21,17 @@ jobs:
         uses: actions/checkout@v5
 
       - name: 🐍 Configurar Python
-        # O Robot Framework é construído sobre Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip' 
 
       - name: 📦 Instalar Dependências (Robot Framework)
-        # Instala o Robot Framework e todas as bibliotecas usadas (ex: SeleniumLibrary)
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-        # O working-directory garante que o requirements.txt correto seja usado
         working-directory: robotframework
 
       - name: 🏃 Rodar Testes Robot Framework
-        # Executa a suíte de testes (por padrão, no modo headless para UI)
         run: robot Tests/
-        # Ajuste 'Tests/' para o nome da sua pasta de suítes de teste, se for diferente
         working-directory: robotframework
