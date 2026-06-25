@@ -2,17 +2,17 @@ name: 🤖 CI - Testes BDD CodeceptJS
 
 on:
   push:
-    branches: [ main, develop ] # Roda o CI ao commitar na main ou na develop
+    branches: [ main, develop ]
   pull_request:
-    branches: [ main ] # Roda o CI também quando você abrir um PR para juntar a develop na main
-    paths: # Alinhado corretamente a nível global
-      - 'codeceptjs/**'
-      - '.github/workflows/codeceptjs_ci.yml'
+    branches: [ main ]
+  paths:
+    - 'codeceptjs/**'
+    - '.github/workflows/codeceptjs_ci.yml'
 
 jobs:
   run_node_tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 15 # Evita travar a esteira por horas
+    timeout-minutes: 15
     
     steps:
       - name: ⬇️ Checkout do Código
@@ -27,20 +27,13 @@ jobs:
         run: npm install
         working-directory: codeceptjs
         
-      - name: 🔒 Corrigir Permissões dos Binários
-        run: |
-          chmod +x ./node_modules/.bin/playwright
-          chmod +x ./node_modules/.bin/codeceptjs
-        working-directory: codeceptjs
-        
-      - name: 🌐 Instalar Apenas o Browser Chromium (Otimizado)
-        # Removido o --with-deps para evitar a lentidão de atualização do Ubuntu
-        run: npx playwright install chromium
+      - name: 🌐 Instalar Browser Chromium (Direto do Binário Local)
+        # Chamando diretamente o binário local evitamos que o npx trave a extração do zip
+        run: ./node_modules/.bin/playwright install chromium
         working-directory: codeceptjs
         
       - name: 🏃 Rodar Testes CodeceptJS
-        # Rodando diretamente via npx com logs normais de execução
-        run: npx codeceptjs run --verbose
+        run: ./node_modules/.bin/codeceptjs run --verbose
         working-directory: codeceptjs
         env:
-          HEADLESS: true # Força o modo de segundo plano para o ambiente de CI
+          HEADLESS: true
