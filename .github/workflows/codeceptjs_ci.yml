@@ -13,35 +13,33 @@ jobs:
   run_node_tests:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
+
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5
-        
-      - name: ⚙️ Configurar Node.js (v24)
+
+      - name: ⚙️ Configurar Node.js (v22)
         uses: actions/setup-node@v5
         with:
-          node-version: 24
-          
+          node-version: 22
+          cache: npm
+          cache-dependency-path: codeceptjs/package-lock.json
+
       - name: 📦 Instalar Dependências (Modo CI Seguro)
-        # O 'npm ci' limpa o cache e garante as permissões corretas de execução dos binários
-        run: npm ci
         working-directory: codeceptjs
-        
+        run: npm ci
+
       - name: 🌐 Instalar Browser Chromium (Sem Interação)
-        # Navegando via 'cd' e injetando variáveis que impedem o travamento pós-download
-        run: |
-          cd codeceptjs
-          npx playwright install chromium
+        working-directory: codeceptjs
+        run: npx playwright install --with-deps chromium
         env:
           CI: true
           DEBIAN_FRONTEND: noninteractive
           PLAYWRIGHT_SKIP_BROWSER_GC: 1
-        
+
       - name: 🏃 Rodar Testes CodeceptJS
-        run: |
-          cd codeceptjs
-          npx codeceptjs run --verbose
+        working-directory: codeceptjs
+        run: npx codeceptjs run --verbose
         env:
           HEADLESS: true
           CI: true
