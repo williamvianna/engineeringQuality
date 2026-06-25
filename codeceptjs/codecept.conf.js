@@ -10,13 +10,14 @@ setCommonPlugins();
 exports.config = {
   tests: "./*_test.js",
   output: "./output",
-  helpers: {
-    Playwright: {
-      browser: "chromium",
-      url: "http://localhost",
-      show: true,
-    },
-  },
+  // Dentro do seu arquivo codecept.conf.js
+helpers: {
+  Playwright: {
+    url: 'https://automationpratice.com.br',
+    show: process.env.HEADLESS !== 'true', // Se HEADLESS for true, show fica false (modo correto para o CI)
+    browser: 'chromium'
+  }
+},
   include: {
     I: "./steps_file.js",
   },
