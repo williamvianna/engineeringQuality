@@ -27,13 +27,15 @@ jobs:
         run: npm install
         working-directory: codeceptjs
         
-      - name: 🌐 Instalar Browser Chromium (Direto do Binário Local)
-        # Chamando diretamente o binário local evitamos que o npx trave a extração do zip
-        run: ./node_modules/.bin/playwright install chromium
+      - name: 🌐 Instalar Browser Chromium (Modo Silencioso)
+        run: npx playwright install chromium
         working-directory: codeceptjs
+        env:
+          CI: true
         
       - name: 🏃 Rodar Testes CodeceptJS
-        run: ./node_modules/.bin/codeceptjs run --verbose
+        run: npx codeceptjs run --verbose
         working-directory: codeceptjs
         env:
           HEADLESS: true
+          CI: true
