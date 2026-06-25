@@ -3,11 +3,14 @@ name: 🤖 CI - Testes BDD CodeceptJS
 on:
   push:
     branches: [ main, develop ]
+    paths:
+      - 'codeceptjs/**'
+      - '.github/workflows/codeceptjs.yml'
   pull_request:
     branches: [ main ]
     paths:
       - 'codeceptjs/**'
-      - '.github/workflows/codeceptjs_ci.yml'
+      - '.github/workflows/codeceptjs.yml'
 
 jobs:
   run_node_tests:

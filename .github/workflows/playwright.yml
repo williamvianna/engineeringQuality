@@ -2,17 +2,20 @@ name: 🎭 CI - Testes E2E Playwright
 
 on:
   push:
-    branches: [ main, develop ] # Roda o CI ao commitar na main ou na develop
+    branches: [ main, develop ]
+    paths:
+      - 'playwright/**'
+      - '.github/workflows/playwright.yml'
   pull_request:
-    branches: [ main ] # Roda o CI também quando você abrir um PR para juntar a develop na main
+    branches: [ main ]
     paths: 
       - 'playwright/**'
-      - '.github/workflows/playwright_ci.yml'
+      - '.github/workflows/playwright.yml'
 
 jobs:
   run_playwright_tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 15 # Redes de segurança para não estourar seus minutos do GitHub
+    timeout-minutes: 15
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5
@@ -23,7 +26,6 @@ jobs:
           node-version: 24
 
       - name: 📦 Instalar Dependências (npm ci)
-        # npm ci é mais rápido e seguro para pipelines
         run: npm ci
         working-directory: playwright
 
@@ -39,10 +41,9 @@ jobs:
         working-directory: playwright
 
       - name: ⬆️ Publicar Relatórios de Testes
-        # Roda se passar ou falhar, mas não se você cancelar manualmente
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v5
         with:
           name: playwright-report
           path: playwright/playwright-report
-          retention-days: 30 # Limpa os relatórios antigos do GitHub após 30 dias
+          retention-days: 30

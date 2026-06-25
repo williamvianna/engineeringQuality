@@ -3,11 +3,14 @@ name: 🧪 CI - Testes E2E Cypress
 on:
   push:
     branches: [ main, develop ]
+    paths:
+      - 'cypress/**'
+      - '.github/workflows/cypress.yml'
   pull_request:
     branches: [ main ]
     paths:
       - 'cypress/**'
-      - '.github/workflows/cypress_ci.yml' # Certifique-se de que o nome do arquivo aqui está idêntico ao seu real
+      - '.github/workflows/cypress.yml'
 
 jobs:
   run_cypress:
