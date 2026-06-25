@@ -27,15 +27,15 @@ jobs:
         run: npm install
         working-directory: codeceptjs
         
-      - name: 🌐 Instalar Browser Chromium (Forçando via Node)
-        # Rodando direto com o interpretador 'node', o Linux ignora o bloqueio de permissão de script do shell
-        run: node ./node_modules/playwright/cli.js install chromium
+      - name: 🌐 Instalar Browser Chromium (Via Action Oficial)
+        # Usa a estrutura nativa do Playwright que já gerencia permissões e evita loops no terminal
+        run: npx playwright install chromium
         working-directory: codeceptjs
         env:
           CI: true
-        
+          PLAYWRIGHT_SKIP_BROWSER_GC: 1
+
       - name: 🏃 Rodar Testes CodeceptJS
-        # Rodando o codeceptjs também direto via node pelo arquivo cli principal dele
         run: node ./node_modules/codeceptjs/bin/codecept.js run --verbose
         working-directory: codeceptjs
         env:
