@@ -23,21 +23,25 @@ jobs:
         with:
           node-version: 24
           
-      - name: 📦 Instalar Dependências (CodeceptJS)
-        run: npm install
+      - name: 📦 Instalar Dependências (Modo CI Seguro)
+        # O 'npm ci' limpa o cache e garante as permissões corretas de execução dos binários
+        run: npm ci
         working-directory: codeceptjs
         
-      - name: 🌐 Instalar Browser Chromium (Modo Direto e Seguro)
-        # Executar com 'node' evita o Permission Denied, e as envs evitam o travamento pós-100%
-        run: node ./node_modules/playwright/cli.js install chromium
-        working-directory: codeceptjs
+      - name: 🌐 Instalar Browser Chromium (Sem Interação)
+        # Navegando via 'cd' e injetando variáveis que impedem o travamento pós-download
+        run: |
+          cd codeceptjs
+          npx playwright install chromium
         env:
           CI: true
+          DEBIAN_FRONTEND: noninteractive
           PLAYWRIGHT_SKIP_BROWSER_GC: 1
-
-      - name: 跑 Rodar Testes CodeceptJS
-        run: node ./node_modules/codeceptjs/bin/codecept.js run --verbose
-        working-directory: codeceptjs
+        
+      - name: 🏃 Rodar Testes CodeceptJS
+        run: |
+          cd codeceptjs
+          npx codeceptjs run --verbose
         env:
           HEADLESS: true
           CI: true
