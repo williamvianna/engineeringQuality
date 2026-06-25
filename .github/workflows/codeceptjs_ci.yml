@@ -27,14 +27,15 @@ jobs:
         run: npm install
         working-directory: codeceptjs
         
-      - name: 🌐 Instalar Browser Chromium (Modo Silencioso)
-        run: npx playwright install chromium
+      - name: 🌐 Instalar Browser Chromium (Contornando Permissão)
+        # Usar 'npm exec' força o node a rodar o pacote com as permissões corretas do escopo local
+        run: npm exec playwright install chromium
         working-directory: codeceptjs
         env:
           CI: true
         
       - name: 🏃 Rodar Testes CodeceptJS
-        run: npx codeceptjs run --verbose
+        run: npm exec codeceptjs run --verbose
         working-directory: codeceptjs
         env:
           HEADLESS: true
