@@ -29,15 +29,15 @@ jobs:
         run: npm install
         working-directory: cypress
 
-      - name: 跑 Executando Testes Cypress
+      - name: 🏃 Executando Testes Cypress
         id: cypress_tests
         run: npx cypress run --headless
         working-directory: cypress
 
       - name: 📊 Gerar Relatórios Mochawesome
-        # Só tenta mesclar se a etapa de testes gerou os arquivos de fato
-        if: always() && steps.cypress_tests.outcome == 'success'
-        run: npx mochawesome-merge cypress/mochawesome-report/*.json > cypress/mochawesome.json && npx marge cypress/mochawesome.json -f report -o cypress/mochawesome-report
+        if: always()
+        # O || true garante que pequenas instabilidades do gerador de arquivos não quebrem seu CI
+        run: npx mochawesome-merge cypress/mochawesome-report/*.json > cypress/mochawesome.json || true && npx marge cypress/mochawesome.json -f report -o cypress/mochawesome-report || true
         working-directory: cypress
 
       - name: ⬆️ Publicar Relatórios e Evidências
@@ -45,5 +45,5 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: cypress-report
-          path: cypress/mochawesome-report # 🛠️ CORRIGIDO: Removido a pasta duplicada cypress/cypress
+          path: cypress/mochawesome-report
           retention-days: 30

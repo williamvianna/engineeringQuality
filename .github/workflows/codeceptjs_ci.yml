@@ -34,8 +34,8 @@ jobs:
         working-directory: codeceptjs
         
       - name: 🌐 Instalar Apenas o Browser Chromium (Otimizado)
-        # Baixa apenas o Chromium em vez de 3 navegadores pesados, reduzindo o download de 9 min para segundos
-        run: npx playwright install chromium --with-deps
+        # Removido o --with-deps para evitar a lentidão de atualização do Ubuntu
+        run: npx playwright install chromium
         working-directory: codeceptjs
         
       - name: 🏃 Rodar Testes CodeceptJS
