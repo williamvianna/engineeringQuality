@@ -27,15 +27,16 @@ jobs:
         run: npm install
         working-directory: codeceptjs
         
-      - name: 🌐 Instalar Browser Chromium (Contornando Permissão)
-        # Usar 'npm exec' força o node a rodar o pacote com as permissões corretas do escopo local
-        run: npm exec playwright install chromium
+      - name: 🌐 Instalar Browser Chromium (Forçando via Node)
+        # Rodando direto com o interpretador 'node', o Linux ignora o bloqueio de permissão de script do shell
+        run: node ./node_modules/playwright/cli.js install chromium
         working-directory: codeceptjs
         env:
           CI: true
         
       - name: 🏃 Rodar Testes CodeceptJS
-        run: npm exec codeceptjs run --verbose
+        # Rodando o codeceptjs também direto via node pelo arquivo cli principal dele
+        run: node ./node_modules/codeceptjs/bin/codecept.js run --verbose
         working-directory: codeceptjs
         env:
           HEADLESS: true
