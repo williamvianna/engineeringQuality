@@ -5,9 +5,9 @@ on:
     branches: [ main, develop ]
   pull_request:
     branches: [ main ]
-  paths:
-    - 'codeceptjs/**'
-    - '.github/workflows/codeceptjs_ci.yml'
+    paths:
+      - 'codeceptjs/**'
+      - '.github/workflows/codeceptjs_ci.yml'
 
 jobs:
   run_node_tests:
