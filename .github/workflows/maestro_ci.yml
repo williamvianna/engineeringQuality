@@ -15,6 +15,7 @@ jobs:
     # Atenção: Testes mobile em CI com Maestro geralmente exigem a instalação do Android SDK
     # e um emulador, o que é complexo em CI/CD. Este CI valida a sintaxe e o comando CLI.
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5

@@ -12,7 +12,7 @@ on:
 jobs:
   run_vbscript_tests:
     runs-on: windows-latest
-    
+    timeout-minutes: 15
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5

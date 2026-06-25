@@ -12,7 +12,7 @@ on:
 jobs:
   run_xcuitest:
     runs-on: macos-latest
-
+    timeout-minutes: 15
     steps:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5
