@@ -4,5 +4,6 @@
     "java.project.sourcePaths": [
         "java/operadoresAtribuicaoCumulativa/src",
         "java"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
