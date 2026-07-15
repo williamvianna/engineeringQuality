@@ -20,11 +20,11 @@ jobs:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v5
 
-      # ⚙️ Ajustado de v17 para v21 para alinhar perfeitamente com o pom.xml
-      - name: ☕ Configurar Java (v21)
+      # ⚙️ Ajustado para v11 para alinhar perfeitamente com a apiPlataformaFilmes
+      - name: ☕ Configurar Java (v11)
         uses: actions/setup-java@v5
         with:
-          java-version: '21'
+          java-version: '11'
           distribution: 'temurin'
           cache: 'maven'
 
