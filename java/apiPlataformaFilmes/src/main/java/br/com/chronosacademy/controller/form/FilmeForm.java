@@ -3,8 +3,8 @@ package br.com.chronosacademy.controller.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import br.com.chronosacademy.repository.*;
 import org.hibernate.validator.constraints.Length;
