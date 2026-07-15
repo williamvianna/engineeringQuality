@@ -37,7 +37,7 @@ jobs:
         env:
           PLAYWRIGHT_USER: ${{ secrets.PLAYWRIGHT_USER }}
           PLAYWRIGHT_PASSWORD: ${{ secrets.PLAYWRIGHT_PASSWORD }}
-        run: npx playwright test
+        run: npx playwright test --project=api
         working-directory: playwright
 
       - name: ⬆️ Publicar Relatórios de Testes

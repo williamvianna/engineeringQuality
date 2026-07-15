@@ -27,7 +27,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    // baseURL: 'https://www.saucedemo.com',
+    baseURL: process.env.UI_BASE_URL || 'https://www.saucedemo.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -38,32 +38,44 @@ export default defineConfig({
   projects: [
     {
       name: 'api',
+      testDir: './e2e/api',
+      testMatch: ['**/*.spec.js'],
       use: { baseURL: process.env.API_BASE_URL || 'https://restful-booker.herokuapp.com' },
     },
 
     {
       name: 'ui',
+      testDir: './e2e',
+      testMatch: ['*.spec.js', 'login/**/*.spec.js'],
       use: { baseURL: process.env.UI_BASE_URL || 'https://www.saucedemo.com', ...devices['Desktop Chrome'] },
     },
     
     {
       name: 'chromium',
+      testDir: './e2e',
+      testMatch: ['*.spec.js', 'login/**/*.spec.js'],
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testDir: './e2e',
+      testMatch: ['*.spec.js', 'login/**/*.spec.js'],
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testDir: './e2e',
+      testMatch: ['*.spec.js', 'login/**/*.spec.js'],
       use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports. */
     {
       name: 'Mobile Chrome',
+      testDir: './e2e',
+      testMatch: ['*.spec.js', 'login/**/*.spec.js'],
       use: { ...devices['Pixel 5'] },
     },
     { name: 'setup', testMatch: /.*\.setup\.js/ },
